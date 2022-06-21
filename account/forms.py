@@ -32,3 +32,8 @@ class UserRegistrationForm(forms.Form):
 
         if p1 and p2 and p1 != p2:
             raise ValidationError('password missmatch!')
+
+
+class UserLoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input is-small', 'placeholder': 'Username'}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'input is-small', 'placeholder': 'Password'}))
