@@ -2,14 +2,16 @@
 
 {% block content %}
     <div class="container">
-        <div class="col-md-6 mx-auto">
-            <h1>Register</h1>
-            <hr>
-            <form action="">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn btn-sm btn-primary">Register</button>
-        </form>
+        <div class="columns ">
+            <div class="column is-two-fifths m-auto">
+                <h1 class="title">Register</h1>
+                <hr>
+                <form action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button is-small is-success mt-2">Register</button>
+            </form>
+            </div>
         </div>
     </div>
 {% endblock %}
