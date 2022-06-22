@@ -36,7 +36,7 @@
     <div class="card-footer">
     <a href="#" class="card-footer-item">Save</a>
     <a href="#" class="card-footer-item">Edit</a>
-    <a href="{% url 'post:detail' post.id post.slug %}" class="card-footer-item">View</a>
+    <a href="{{ post.get_absolute_url }}" class="card-footer-item">View</a>
   </div>
 </div>
                         {% endfor %}
