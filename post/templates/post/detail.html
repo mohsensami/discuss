@@ -22,7 +22,7 @@
       </div>
       <div class="media-content">
         <p class="title is-4">{{ post.title }}</p>
-        <p class="subtitle is-6">@{{ post.user.username }}</p>
+        <p class="subtitle is-6"><a href="{% url 'account:profile' post.user.id %}">@{{ post.user.username }}</a></p>
       </div>
     </div>
 
@@ -39,7 +39,9 @@
     <a href="#" class="card-footer-item">View</a>
   </div>
 </div>
-
+{% if post.user.id == request.user.is_authenticated %}
+    <a href="{% url 'post:delete' post.id %}" class="button is-small is-danger">Delete</a>
+{% endif %}
                     </li>
                 </ul>
             </div>
