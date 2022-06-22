@@ -52,6 +52,9 @@
              <a href="{% url 'account:logout' %}" class="button is-warning is-small">
                 <strong>Logout</strong>
               </a>
+              <a href="{% url 'account:profile' request.user.id %}" class="button is-info is-small">
+                <strong>Profile</strong>
+              </a>
           {% else %}
               <a href="{% url 'account:register' %}" class="button is-primary is-small">
                 <strong>Sign up</strong>
