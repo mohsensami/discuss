@@ -21,5 +21,5 @@ app_name = 'social'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('social.urls')),
-    path('', include('account.urls')),
+    path('account/', include('account.urls')),
 ]
