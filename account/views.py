@@ -14,7 +14,7 @@ class RegisterView(View):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('social:home')
+            return redirect('post:index')
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):
@@ -27,7 +27,7 @@ class RegisterView(View):
             cd = form.cleaned_data
             User.objects.create_user(cd['username'], cd['email'], cd['password1'])
             messages.success(request, 'you registered successfully', 'success')
-            return redirect('social:home')
+            return redirect('post:index')
         return render(request, self.template_name, {'form': form})
 
 
@@ -37,7 +37,7 @@ class LoginView(View):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('social:home')
+            return redirect('post:index')
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):
@@ -52,7 +52,7 @@ class LoginView(View):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'you logged in successfully', 'success')
-                return redirect('social:home')
+                return redirect('post:index')
             messages.error(request, 'username or password is wrong', 'warning')
         return render(request, self.template_name, {'form': form})
 
@@ -61,7 +61,7 @@ class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         messages.success(request, 'you logged out successfully', 'success')
-        return redirect('account:login')
+        return redirect('post:index')
 
 
 class ProfileView(LoginRequiredMixin, View):

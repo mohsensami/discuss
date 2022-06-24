@@ -1,82 +1,73 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <div class="container">
-        <div class="tile is-ancestor">
-            <div class="tile is-vertical is-8">
-                <div class="tile">
-                    <div class="tile is-parent is-vertical">
-                        <article class="tile is-child notification is-primary">
-                            <p class="title">Hello</p>
-                            <p class="subtitle">{{ request.user.username }}</p>
-                        </article>
-                        <article class="tile is-child notification is-warning">
-                            <p class="title">...tiles</p>
-                            <p class="subtitle">Bottom tile</p>
-                        </article>
-                    </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child notification is-info">
-                            <p class="title">Middle tile</p>
-                            <p class="subtitle">With an image</p>
-                            <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/640x480.png">
-                            </figure>
-                        </article>
-                    </div>
-                </div>
+<!-----------------------------------Banner/img Starts-------------------->
 
-            </div>
-            <div class="tile is-parent">
-                <article class="tile is-child notification is-success">
-                    <div class="content">
-                        <p class="title">Tall tile</p>
-                        <p class="subtitle">With even more content</p>
-                        <div class="content">
-                            <!-- Content -->
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-        <div class="tile">
-            <article class="tile is-child  ">
-                <nav class="panel">
-                    <p class="panel-heading">
-                        Posts
-                    </p>
-                    <div class="panel-block">
-                        <p class="control has-icons-left">
-                            <input class="input" type="text" placeholder="Search">
-                            <span class="icon is-left">
-        <i class="fas fa-search" aria-hidden="true"></i>
-      </span>
-                        </p>
-                    </div>
-                    <p class="panel-tabs">
-                        <a class="is-active">All</a>
-                        <a>Public</a>
-                        <a>Private</a>
-                        <a>Sources</a>
-                        <a>Forks</a>
-                    </p>
-                    {% for post in posts %}
-                    <a href="{{ post.get_absolute_url }}" class="panel-block is-active">
-                        {{ post.title }}
-                    </a>
-                    {% endfor %}
 
-                    <label class="panel-block">
-                        <input type="checkbox">
-                        remember me
-                    </label>
-                    <div class="panel-block">
-                        <button class="button is-link is-outlined is-fullwidth">
-                            Reset all filters
-                        </button>
-                    </div>
-                </nav>
-            </article>
-        </div>
+<div class="banner">
+    <div class="banner-title d-flex flex-column justify-content-center align-items-center">
+        <img src="{% static 'img/avatar-dhg.png' %}" alt="img" class="rounded-circle" width="80px" height="80px">
+        <h3 class="text-light">{{ user.username }}</h3>
+        <p class="text-light">I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.</p>
+
     </div>
+
+
+    <div class="banner-end d-flex justify-content-center align-items-end">
+        <ul class="nav text-light">
+            <li class="nav-item nav-link active">Photos</li>
+            <li class="nav-item nav-link">Others</li>
+            <li class="nav-item nav-link">Anothers</li>
+
+        </ul>
+
+    </div>
+
+
+    
+
+</div>
+
+<!--------------------Image Portfolio----------------->
+
+
+<div class="container my-4">
+    
+    {% for post in posts %}
+<div class="card mb-2" >
+
+          
+       
+    <div class="card-body">
+    
+    <div class="media">
+    <img src="{% static 'img/avatar-dhg.png' %}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
+    
+    <div class="media-body">
+    <h2>{{ post.title }}</h2>
+    <p class="card-text text-justify">
+    {{ post.body }}
+    </p>
+    
+    </div>
+    <small>{{ post.created }}</small>
+    
+    
+    
+    </div>
+    
+    </div>
+    <div class="card-footer">
+      <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
+    </div>
+                  
+    
+    
+    
+    
+    </div>
+    {% endfor %}
+
+</div>
 {% endblock %}

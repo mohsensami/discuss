@@ -4,12 +4,12 @@ from django.core.exceptions import ValidationError
 
 
 class UserRegistrationForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input is-small', 'placeholder': 'Username'}))
-    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'input is-small', 'placeholder': 'Email'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
+    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(
-        attrs={'class': 'input is-small', 'placeholder': 'Password'}))
+        attrs={'class': 'form-control', 'placeholder': 'Password'}))
     password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(
-        attrs={'class': 'input is-small', 'placeholder': 'Confirm Password'}))
+        attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}))
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -35,5 +35,5 @@ class UserRegistrationForm(forms.Form):
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input is-small', 'placeholder': 'Username'}))
-    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'input is-small', 'placeholder': 'Password'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))

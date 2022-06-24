@@ -1,24 +1,254 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Social</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<!------------------LIght BOx for Gallery-------------->
+<link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+<script type="text/javascript" src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script>
+<!------------------LIght BOx for Gallery-------------->
+<title>Social</title>
 </head>
-<body class="">
+<body>
+
+
+    <!-------------------------------NAvigation Starts------------------>
+
     {% include 'inc/header.html' %}
 
-    {% include 'inc/messages.html' %}
+    <!---------------------------------------------Ends navigation------------------------------>
 
-    <div style="min-height: 800px">
-        {% block content %}
+    <!---------------------------MOdal Section  satrts------------------->
 
-        {% endblock %}
+    <div class="modal fade" id="modalview">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+
+            <div class="modal-content">
+
+
+                <div class="modal-header">
+                    <div class="modal-title h4">Messages</div>
+
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+
+                <div class="modal-body">
+
+
+                    <ul class="list-unstyled">
+
+
+                     <a href="#" class="text-decoration-none">
+                        <li class="media hover-media">
+                           
+                                <img src="img/avatar-dhg.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+
+                                <div class="media-body text-dark">
+                                        <h6 class="media-header">Jchob Thunder and <strong> 1 others</strong></h6>
+                                        <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+                                </div>
+
+                        </li>
+                    </a>
+                    <hr class="my-3">
+
+
+                    
+                    <a href="#" class="text-decoration-none">
+                            <li class="media hover-media">
+                               
+                                    <img src="img/avatar-fat.jpg" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+    
+                                    <div class="media-body text-dark">
+                                            <h6 class="media-header">Mark Otto and <strong> 3 others</strong></h6>
+                                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    
+                                    </div>
+    
+                            </li>
+                        </a>
+
+
+                        <hr class="my-3">
+
+
+                        <a href="#" class="text-decoration-none">
+                            <li class="media hover-media">
+                               
+                                    <img src="img/avatar-mdo.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+    
+                                    <div class="media-body text-dark">
+                                            <h6 class="media-header">Archer andu and <strong> 5 others</strong></h6>
+                                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    
+                                    </div>
+    
+                            </li>
+                        </a>
+
+                        <hr class="my-3">
+
+
+                        <a href="#" class="text-decoration-none">
+                                <li class="media hover-media">
+                                   
+                                        <img src="img/avatar-dhg.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+        
+                                        <div class="media-body text-dark">
+                                                <h6 class="media-header">Jchob Thunder and <strong> 1 others</strong></h6>
+                                                <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        
+                                        </div>
+        
+                                </li>
+                            </a>
+                            <hr class="my-3">
+        
+        
+                            
+                            <a href="#" class="text-decoration-none">
+                                    <li class="media hover-media">
+                                       
+                                            <img src="img/avatar-fat.jpg" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+            
+                                            <div class="media-body text-dark">
+                                                    <h6 class="media-header">Mark Otto and <strong> 3 others</strong></h6>
+                                                    <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            
+                                            </div>
+            
+                                    </li>
+                                </a>
+        
+        
+                                <hr class="my-3">
+        
+        
+                                <a href="#" class="text-decoration-none">
+                                    <li class="media hover-media">
+                                       
+                                            <img src="img/avatar-mdo.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+            
+                                            <div class="media-body text-dark">
+                                                    <h6 class="media-header">Archer andu and <strong> 5 others</strong></h6>
+                                                    <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            
+                                            </div>
+            
+                                    </li>
+                                </a>
+
+                        
+                                <hr class="my-3">
+                                <a href="#" class="text-decoration-none">
+                                        <li class="media hover-media">
+                                           
+                                                <img src="img/avatar-dhg.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+                
+                                                <div class="media-body text-dark">
+                                                        <h6 class="media-header">Jchob Thunder and <strong> 1 others</strong></h6>
+                                                        <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                
+                                                </div>
+                
+                                        </li>
+                                    </a>
+                                    <hr class="my-3">
+                
+                
+                                    
+                                    <a href="#" class="text-decoration-none">
+                                            <li class="media hover-media">
+                                               
+                                                    <img src="img/avatar-fat.jpg" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+                    
+                                                    <div class="media-body text-dark">
+                                                            <h6 class="media-header">Mark Otto and <strong> 3 others</strong></h6>
+                                                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    
+                                                    </div>
+                    
+                                            </li>
+                                        </a>
+                
+                
+                                        <hr class="my-3">
+                
+                
+                                        <a href="#" class="text-decoration-none">
+                                            <li class="media hover-media">
+                                               
+                                                    <img src="img/avatar-mdo.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
+                    
+                                                    <div class="media-body text-dark">
+                                                            <h6 class="media-header">Archer andu and <strong> 5 others</strong></h6>
+                                                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    
+                                                    </div>
+                    
+                                            </li>
+                                        </a>
+    
+    
+
+
+                    </ul>
+
+
+
+                    
+
+                </div>
+            </div>
+
+
+        </div>
+
+
     </div>
 
+    <!-------------------------------MOdal Ends---------------------------->
 
-    {% include 'inc/footer.html' %}
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+    {% include 'inc/messages.html' %}
+        
+ {% block content %}{% endblock %}            
+
+
+
+
+
+<!------------------------Light BOx OPtions------------->
+<script>
+        lightbox.option({
+          
+        })
+    </script>
+
+
+
+<!------------------------Light BOx OPtions------------->
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

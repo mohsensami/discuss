@@ -1,71 +1,41 @@
-<header class="mb-4">
-    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo-white.png" width="112" height="28">
-    </a>
+{% load static %}
 
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color:#3097D1">
+  <a href="{% url 'post:index' %}"" class="navbar-brand"><img src="{% static 'img/brand-white.png' %}" alt="logo" class="img-fluid" width="80px" height="100px"></a>
 
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive"><span class="navbar-toggler-icon"></span></button>
 
-      <a class="navbar-item">
-        Documentation
-      </a>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
+  <div class="collapse navbar-collapse" id="responsive">
+      <ul class="navbar-nav mr-auto text-capitalize">
+          <li class="nav-item"><a href="{% url 'post:index' %}" class="nav-link active">home</a></li>
+        
+          
 
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
           {% if request.user.is_authenticated %}
-             <a href="{% url 'account:logout' %}" class="button is-warning is-small">
-                <strong>Logout</strong>
-              </a>
-              <a href="{% url 'account:profile' request.user.id %}" class="button is-info is-small">
-                <strong>Profile</strong>
-              </a>
+            <li class="nav-item"><a href="{% url 'account:profile' request.user.id %}" class="nav-link">profile</a></li>
+            <li class="nav-item"><a href="{% url 'account:logout' %}" class="nav-link">logout</a></li>
           {% else %}
-              <a href="{% url 'account:register' %}" class="button is-primary is-small">
-                <strong>Sign up</strong>
-              </a>
-              <a href="{% url 'account:login' %}" class="button is-light is-small">
-                Log in
-              </a>
+            <li class="nav-item"><a href="{% url 'account:register' %}" class="nav-link">Register</a></li>
+            <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">Login</a></li>
           {% endif %}
-        </div>
-      </div>
-    </div>
+
+      </ul>
+
+      <form action="" class="form-inline ml-auto d-none d-md-block">
+          <input type="text" name="search" id="search" placeholder="Search" class="form-control form-control-sm">
+      </form>
+      <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px;"><i class="far fa-bell ml-3 d-none d-md-block"></i></a> 
+      <img src="{% static 'img/avatar-dhg.png' %}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">
+
+
+
+
+
   </div>
+
+
+
+
+
 </nav>
-</header>
