@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .models import Post
 from django.contrib import messages
@@ -11,7 +11,7 @@ class PostListView(View):
     form_class = PostCreateUpdateForm
     def get(self, request):
         form = self.form_class()
-        posts = get_list_or_404(Post)
+        posts = Post.objects.all()
         return render(request, 'post/index.html', {'posts': posts, 'form': form})
 
     def post(self, request, *args, **kwargs):
