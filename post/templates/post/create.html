@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<br><br>
+<div class="container">
+  <div class="card mb-2" >
+
+          
+       
+    <div class="card-body">
+    
+    <div class="media">
+    <img src="{% static 'img/avatar-dhg.png' %}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
+    
+    <div class="media-body">
+    <h2></h2>
+    <p class="card-text text-justify">
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-outline-success card-link btn-sm mt-2">Update</button>
+    </form>
+    </p>
+    
+    </div>
+    <small></small>
+    
+    
+    
+    </div>
+    
+    </div>
+    <div class="card-footer">
+      
+    </div>
+                  
+    
+    
+    
+    
+    </div>
+</div>
+{% endblock %}

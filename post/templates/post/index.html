@@ -88,16 +88,16 @@
   <div class="middle-column">
 <div class="card mb-4">
   <div class="card-header bg-transparent">
-    <form class="form-inline">
-
+    <form method="post" class="form-inline">
+        {% csrf_token %}
         <div class="input-group w-100">
-         <input type="text" name="message" id="message" placeholder="Message" class="form-control form-control-md">
+        
+            {{ form }}
 
          <div class="input-group-append">
                 <div class="input-group-text">
-                        <i class="fas fa-camera"></i>
-                    </div>
-
+                    <button>Post</button>
+                </div>
          </div>
 
         </div>
