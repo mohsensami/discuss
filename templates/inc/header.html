@@ -1,0 +1,41 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color:#3097D1">
+  <a href="{% url 'post:index' %}"" class="navbar-brand"><img src="{% static 'img/brand-white.png' %}" alt="logo" class="img-fluid" width="80px" height="100px"></a>
+
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive"><span class="navbar-toggler-icon"></span></button>
+
+
+  <div class="collapse navbar-collapse" id="responsive">
+      <ul class="navbar-nav mr-auto text-capitalize">
+          <li class="nav-item"><a href="{% url 'post:index' %}" class="nav-link active">home</a></li>
+        
+          
+
+          {% if request.user.is_authenticated %}
+            <li class="nav-item"><a href="{% url 'account:profile' request.user.id %}" class="nav-link">profile</a></li>
+            <li class="nav-item"><a href="{% url 'account:logout' %}" class="nav-link">logout</a></li>
+          {% else %}
+            <li class="nav-item"><a href="{% url 'account:register' %}" class="nav-link">Register</a></li>
+            <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">Login</a></li>
+          {% endif %}
+
+      </ul>
+
+      <form action="" class="form-inline ml-auto d-none d-md-block">
+          <input type="text" name="search" id="search" placeholder="Search" class="form-control form-control-sm">
+      </form>
+      <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px;"><i class="far fa-bell ml-3 d-none d-md-block"></i></a> 
+      <img src="{% static 'img/avatar-dhg.png' %}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">
+
+
+
+
+
+  </div>
+
+
+
+
+
+</nav>
