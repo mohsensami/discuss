@@ -10,9 +10,8 @@ class Post(models.Model):
         ('p', 'publish')
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200, verbose_name='Title')
-    slug = models.SlugField(max_length=100, unique=True, verbose_name='Slug')
     body = models.TextField()
+    slug = models.SlugField(max_length=100, unique=True, verbose_name='Slug')
     image = models.ImageField(upload_to='uploads/', default='default.jpg', verbose_name='Image')
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name='Active/DeActive')
     publish = models.DateTimeField(default=timezone.now, verbose_name='Publish')
@@ -24,7 +23,7 @@ class Post(models.Model):
         verbose_name_plural = 'Posts'
 
     def __str__(self):
-        return self.title
+        return self.body
 
     def get_absolute_url(self):
         return reverse('post:detail', args=(self.id, self.slug))

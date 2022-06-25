@@ -27,7 +27,7 @@ class RegisterView(View):
             cd = form.cleaned_data
             User.objects.create_user(cd['username'], cd['email'], cd['password1'])
             messages.success(request, 'you registered successfully', 'success')
-            return redirect('post:index')
+            return redirect('account:login')
         return render(request, self.template_name, {'form': form})
 
 

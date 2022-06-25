@@ -14,13 +14,17 @@
     <img src="{% static 'img/avatar-dhg.png' %}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
     
     <div class="media-body">
-    <h2>{{ post.user.username }}</h2>
+    <h2></h2>
     <p class="card-text text-justify">
-    {{ post.body }}
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-outline-success card-link btn-sm mt-2">Update</button>
+    </form>
     </p>
     
     </div>
-    <small>{{ post.created }}</small>
+    <small></small>
     
     
     
@@ -28,8 +32,7 @@
     
     </div>
     <div class="card-footer">
-      <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
-      <a href="{% url 'post:update' post.id %}" class="btn btn-outline-info card-link btn-sm">Edit</a>
+      <a href="" class="btn btn-outline-danger card-link btn-sm">Delete</a>
     </div>
                   
     
