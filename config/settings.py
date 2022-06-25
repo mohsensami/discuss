@@ -129,3 +129,11 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_URL = '/account/login/'
 
 
+# Google account
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.hacoupian.net'
+EMAIL_HOST_USER = 'info@hacoupian.net'
+EMAIL_PORT = 587
+EMAIL_HOST_PASSWORD = 'lBocqLOu+B^}'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'info@hacoupian.net'
