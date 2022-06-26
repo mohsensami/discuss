@@ -17,6 +17,11 @@
     <div class="banner-end d-flex justify-content-center align-items-end">
         <ul class="nav text-light">
             <li class="nav-item nav-link active"><a href="{% url 'account:reset_password' %}">Password Reset</a></li>
+            {% if request.user.id != user.id and not is_following %}
+                <li class="nav-item nav-link active"><a href="{% url 'account:user_follow' user.id %}">Follow</a></li>
+            {% elif request.user.id != user.id and is_following %}
+                <li class="nav-item nav-link active"><a href="{% url 'account:user_unfollow' user.id %}">UnFollow</a></li>
+            {% endif %}
         </ul>
 
     </div>

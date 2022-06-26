@@ -9,7 +9,7 @@ class Post(models.Model):
         ('d', 'draft'),
         ('p', 'publish')
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     body = models.TextField()
     slug = models.SlugField(max_length=100, unique=True, verbose_name='Slug')
     image = models.ImageField(upload_to='uploads/', default='default.jpg', verbose_name='Image')
