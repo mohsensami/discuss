@@ -1,8 +1,10 @@
+from weakref import ref
+from django import views
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from .models import Post
+from .models import Post, Comment
 from django.contrib import messages
-from .forms import PostCreateUpdateForm, CommentCreateForm
+from .forms import PostCreateUpdateForm, CommentCreateForm, CommentReplyForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.text import slugify
 from django.contrib.auth.decorators import login_required
@@ -29,6 +31,7 @@ class PostListView(View):
 
 class PostDetailView(View):
     form_class = CommentCreateForm
+    reply_form = CommentReplyForm
 
     def setup(self, request, *args, **kwargs):
         self.post_instance = get_object_or_404(Post, pk=kwargs['post_id'], slug=kwargs['post_slug'])
@@ -36,7 +39,7 @@ class PostDetailView(View):
 
     def get(self, request, post_id, post_slug):
         comments = self.post_instance.pcomments.filter(is_reply=False)
-        return render(request, 'post/detail.html', {'post': self.post_instance, 'comments': comments, 'form': self.form_class})
+        return render(request, 'post/detail.html', {'post': self.post_instance, 'comments': comments, 'form': self.form_class, 'reply':self.reply_form})
 
     @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
@@ -107,3 +110,22 @@ class PostCreateView(LoginRequiredMixin, View):
             new_post.save()
             messages.success(request, 'Post created successfully', 'success')
             return redirect('post:detail', new_post.id, new_post.slug)
+
+
+
+class PostAddReplyView(LoginRequiredMixin, View):
+    form_class = CommentReplyForm
+
+    def post(self, request, post_id, comment_id):
+        post = get_object_or_404(Post, id=post_id)
+        comment = get_object_or_404(Comment, id=comment_id)
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            reply = form.save(commit=False)
+            reply.user = request.user
+            reply.post = post
+            reply.reply = comment
+            reply.is_reply = True
+            reply.save()
+            messages.success(request, 'your reply submitted successfully', 'success')
+        return redirect('post:detail', post.id, post.slug)
