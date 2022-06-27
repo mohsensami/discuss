@@ -31,11 +31,20 @@
       <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
       <a href="{% url 'post:update' post.id %}" class="btn btn-outline-info card-link btn-sm">Edit</a>
     </div>
-                  
-    
-    
-    
-    
+      
     </div>
+
+    {% for comment in comments %}
+    <div class="card mb-3">
+      <div class="card-header">{{ comment.user }}</div>
+      <div class="media-body p-4">
+        
+          {{ comment.body }}
+        
+      </div>
+      <div class="card-footer">{{ comment.created }}</div>
+    </div>
+    {% endfor %}
+
 </div>
 {% endblock %}
