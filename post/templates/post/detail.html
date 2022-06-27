@@ -49,16 +49,29 @@
     {% for comment in comments %}
     <div class="card mb-3">
       <div class="card-header">{{ comment.user }}</div>
-      <div class="media-body p-4">
+      <div class="card-body ">
         
-          {{ comment.body }}
+          <div class="pb-3">{{ comment.body }}</div>
+
+          {% for reply in comment.rcomments.all %}
+            <div class="card">
+              <div class="card-header">ssadsad</div>
+              <div class="card-body">{{ reply.body }}</div>
+              <div class="card-footer">sadsadsad</div>
+              
+            </div>
+            
+          {% endfor %}
         
       </div>
       <div class="card-footer">{{ comment.created }}</div>
     </div>
+  
     {% empty %}
       <div class="alert alert-warning">no comments submited yet</div>
-    {% endfor %}
 
-</div>
+  {% endfor %}
+  
+
+
 {% endblock %}
