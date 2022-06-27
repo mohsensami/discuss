@@ -52,19 +52,27 @@
       <div class="card-body ">
         
           <div class="pb-3">{{ comment.body }}</div>
+          
+          <div class="">
+            <form action="{% url 'post:add_reply' post.id comment.id %}" method="POST">
+              {% csrf_token %}
+              {{ reply }}
+              <input class="btn btn-info btn-sm my-2" type="submit" value="Reply" >
+            </form>
+          </div>
 
           {% for reply in comment.rcomments.all %}
             <div class="card">
-              <div class="card-header">ssadsad</div>
+              <div class="card-header">{{ reply.user }}</div>
               <div class="card-body">{{ reply.body }}</div>
-              <div class="card-footer">sadsadsad</div>
+              <div class="card-footer">{{ reply.created|timesince }}</div>
               
             </div>
             
           {% endfor %}
         
       </div>
-      <div class="card-footer">{{ comment.created }}</div>
+      <div class="card-footer">{{ comment.created|timesince }}</div>
     </div>
   
     {% empty %}
