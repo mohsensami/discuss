@@ -119,7 +119,7 @@
 <div class="media-body">
 <h2>{{ post.user.username }}</h2>
 <p class="card-text text-justify">
-{{ post.body }}
+{{ post.body|truncatewords:20 }}
 </p>
 
 </div>
