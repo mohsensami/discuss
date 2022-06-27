@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Comment
 
 
 def make_published(modeladmin, request, queryset):
@@ -27,7 +27,7 @@ make_draft.short_description = "Draft Selected Articles"
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('image', 'slug', 'status')
+    list_display = ('user', 'slug', 'status', 'publish')
     list_filter = ('publish', 'status')
     search_fields = ('body', )
     prepopulated_fields = {'slug': ('body',)}
@@ -37,3 +37,8 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PostAdmin)
 
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('user', 'post', 'created', 'is_reply')
+    raw_id_fields = ('user', 'post', 'reply')
