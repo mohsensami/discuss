@@ -34,6 +34,18 @@
       
     </div>
 
+    <div class="card mb-4">
+      <div class="card-header">{{ comments.count }} comments</div>
+      <div class="media-body p-4">
+        <form method="POST">
+          {% csrf_token %}
+          {{ form }}
+          <input class="btn btn-info btn-sm mt-2" type="submit" value="Comment" >
+        </form>
+      </div>
+      
+    </div>
+
     {% for comment in comments %}
     <div class="card mb-3">
       <div class="card-header">{{ comment.user }}</div>
@@ -44,6 +56,8 @@
       </div>
       <div class="card-footer">{{ comment.created }}</div>
     </div>
+    {% empty %}
+      <div class="alert alert-warning">no comments submited yet</div>
     {% endfor %}
 
 </div>
