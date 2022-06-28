@@ -7,8 +7,11 @@ class PostCreateUpdateForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('body', )
+        labels = {
+            'body': 'Say Somthing ',
+        }
         widgets = {
-            'body': forms.Textarea(attrs={'class':'form-control'})
+            'body': forms.Textarea(attrs={'class':'form-control','rows':1})
         }
 
 
