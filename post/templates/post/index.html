@@ -91,14 +91,15 @@
     <form method="post" class="form-inline">
         {% csrf_token %}
         <div class="input-group w-100">
-        
-            {{ form }}
 
-         <div class="input-group-append">
-                <div class="input-group-text">
-                    <button>Post</button>
-                </div>
-         </div>
+                    <form method="POST">
+                        
+                        <div class="input-group">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input class="btn btn-sm btn-info" type="submit" value="post" >
+                        </div>
+                    </form>
 
         </div>
 
@@ -109,8 +110,6 @@
     {% for post in posts %}
       <div class="card mb-2" >
 
-          
-       
 <div class="card-body">
 
 <div class="media">
@@ -131,7 +130,10 @@
 
 </div>
 <div class="card-footer">
-  <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link btn-sm">View</a>
+    <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link btn-sm">View</a>
+  {% if request.user.is_authenticated and post.user.id == request.user.id %}
+    <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
+  {% endif %}
 </div>
               
 
