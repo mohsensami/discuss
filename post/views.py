@@ -2,7 +2,7 @@ from weakref import ref
 from django import views
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from .models import Post, Comment
+from .models import Post, Comment, Vote
 from django.contrib import messages
 from .forms import PostCreateUpdateForm, CommentCreateForm, CommentReplyForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -37,9 +37,13 @@ class PostDetailView(View):
         self.post_instance = get_object_or_404(Post, pk=kwargs['post_id'], slug=kwargs['post_slug'])
         return super().setup(self, request, *args, **kwargs)
 
-    def get(self, request, post_id, post_slug):
+    def get(self, request, *args, **kwargs):
         comments = self.post_instance.pcomments.filter(is_reply=False)
-        return render(request, 'post/detail.html', {'post': self.post_instance, 'comments': comments, 'form': self.form_class, 'reply':self.reply_form})
+        vote = Vote.objects.filter(user=request.user, post=self.post_instance)
+        is_liked = False
+        if vote.exists():
+            is_liked = True
+        return render(request, 'post/detail.html', {'post': self.post_instance, 'comments': comments, 'form': self.form_class, 'reply':self.reply_form, 'is_liked':is_liked})
 
     @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
@@ -128,4 +132,16 @@ class PostAddReplyView(LoginRequiredMixin, View):
             reply.is_reply = True
             reply.save()
             messages.success(request, 'your reply submitted successfully', 'success')
+        return redirect('post:detail', post.id, post.slug)
+
+
+class PostLikeView(LoginRequiredMixin, View):
+    def get(self, request, post_id):
+        post = get_object_or_404(Post, id=post_id)
+        like = Vote.objects.filter(post=post, user=request.user)
+        if like.exists():
+            messages.error(request, 'you have already liked this post', 'danger')
+        else:
+            Vote.objects.create(post=post, user=request.user)
+            messages.success(request, 'you liked this post', 'success')
         return redirect('post:detail', post.id, post.slug)
