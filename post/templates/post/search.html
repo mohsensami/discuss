@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-----------------------------------Banner/img Starts-------------------->
+
+
+<div class="container my-4">
+    <a href="{% url 'post:create' %}" class="btn btn-outline-success card-link btn-sm mb-2">Create</a>
+    {% for post in posts %}
+<div class="card mb-2" >
+
+          
+       
+    <div class="card-body">
+    
+    <div class="media">
+    <img src="{% static 'img/avatar-dhg.png' %}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
+    
+    <div class="media-body">
+    <h2>{{ post.title }}</h2>
+    <p class="card-text text-justify">
+    {{ post.body }}
+    </p>
+    
+    </div>
+    <small>{{ post.created }}</small>
+    
+    
+    
+    </div>
+    
+    </div>
+    <div class="card-footer">
+      <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
+    </div>
+                  
+    
+    
+    
+    
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}
