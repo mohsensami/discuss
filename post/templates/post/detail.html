@@ -6,7 +6,9 @@
 <div class="container">
   <div class="card mb-2" >
 
-          
+    <div class="card-header">
+      <a href="{% url 'post:post_like' post.id %}" class="{% if is_liked %}disabled{% endif %} btn btn-success btn-sm">Like {{ post.like_count }}</a>
+    </div>       
        
     <div class="card-body">
     
