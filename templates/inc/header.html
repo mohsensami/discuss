@@ -22,7 +22,8 @@
 
       </ul>
 
-      <form action="" class="form-inline ml-auto d-none d-md-block">
+      <form method="GET" action="{% url 'post:search' %}" class="form-inline ml-auto d-none d-md-block">
+          <input class="btn btn-warning btn-sm" type="submit" value="Search" >
           <input type="text" name="search" id="search" placeholder="Search" class="form-control form-control-sm">
       </form>
       <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px;"><i class="far fa-bell ml-3 d-none d-md-block"></i></a> 

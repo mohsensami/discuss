@@ -11,6 +11,12 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 
+class SearchView(View):
+    def get(self, request):
+        posts = Post.objects.filter(body__icontains = request.GET['search'])
+        return render(request, 'post/search.html', {'posts': posts})
+
+
 class PostListView(View):
     form_class = PostCreateUpdateForm
     def get(self, request):
