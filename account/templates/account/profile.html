@@ -31,11 +31,11 @@
 
 </div>
 
-<!--------------------Image Portfolio----------------->
 
 
 <div class="container my-4">
     <a href="{% url 'post:create' %}" class="btn btn-outline-success card-link btn-sm mb-2">Create</a>
+    <a href="{% url 'account:edit_user' %}" class="btn btn-outline-info card-link btn-sm mb-2">Edit Profile</a>
     {% for post in posts %}
 <div class="card mb-2" >
 
