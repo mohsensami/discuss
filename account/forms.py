@@ -47,7 +47,7 @@ class EditUserForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('age', 'bio')
+        fields = ('avatar', 'age', 'bio')
         widgets = {
             'bio': forms.Textarea(attrs={'class':'form-control','rows':10}),
             'age': forms.NumberInput(attrs={'class':'form-control'}),

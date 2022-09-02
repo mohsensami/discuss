@@ -20,7 +20,7 @@
                   <div class="card card-left1 mb-4" >
                       <img src="img/photo-1455448972184-de647495d428.jpg" alt="" class="card-img-top img-fluid">
                       <div class="card-body text-center ">
-                          <img src="{% static 'img/avatar-dhg.png' %}" alt="img" width="120px" height="120px" class="rounded-circle mt-n5">
+                          <img src="{{user.profile.avatar.url}}" alt="img" width="120px" height="120px" class="rounded-circle mt-n5">
                           <h5 class="card-title">{{ request.user.username }}</h5>
                           <p class="card-text text-justify mb-2">I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.</p>
                           <ul class="list-unstyled nav justify-content-center">
