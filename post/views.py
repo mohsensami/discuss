@@ -24,6 +24,7 @@ class PostListView(View):
         posts = Post.objects.all()
         return render(request, 'post/index.html', {'posts': posts, 'form': form})
 
+    @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
@@ -45,9 +46,13 @@ class PostDetailView(View):
 
     def get(self, request, *args, **kwargs):
         comments = self.post_instance.pcomments.filter(is_reply=False)
-        vote = Vote.objects.filter(user=request.user, post=self.post_instance)
-        is_liked = False
-        if vote.exists():
+        if request.user.is_authenticated:
+            vote = Vote.objects.filter(user=request.user, post=self.post_instance)
+            if vote.exists():
+                is_liked = True
+            else:
+                is_liked = False
+        else:
             is_liked = True
         return render(request, 'post/detail.html', {'post': self.post_instance, 'comments': comments, 'form': self.form_class, 'reply':self.reply_form, 'is_liked':is_liked})
 
@@ -111,6 +116,7 @@ class PostCreateView(LoginRequiredMixin, View):
         form = self.from_class()
         return render(request, 'post/create.html', {'form': form})
 
+    @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
         form = self.from_class(request.POST)
         if form.is_valid():

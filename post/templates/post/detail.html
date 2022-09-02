@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<br><br>
+<br>
 <div class="container">
   <div class="card mb-2" >
 
@@ -13,7 +13,7 @@
     <div class="card-body">
     
     <div class="media">
-    <img src="{% static 'img/avatar-dhg.png' %}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
+    <img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
     
     <div class="media-body">
     <h2>{{ post.user.username }}</h2>
@@ -82,6 +82,6 @@
 
   {% endfor %}
   
-
+</div>
 
 {% endblock %}
