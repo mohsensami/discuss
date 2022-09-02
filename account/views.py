@@ -131,16 +131,14 @@ class EditUserView(LoginRequiredMixin, View):
     form_class = EditUserForm
 
     def get(self, request):
-        form = self.form_class(instance=request.user.profile, initial={'email': request.user.email})
+        form = self.form_class(instance=request.user.profile, initial={'email': request.user.email, 'avatar': request.user.profile.avatar})
         return render(request, 'account/edit_profile.html', {'form': form})
 
     def post(self, request):
-        form = self.form_class(request.POST, instance=request.user.profile)
+        form = self.form_class(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             form.save()
             request.user.email = form.cleaned_data['email']
-            request.user.profile.avatar = form.cleaned_data['avatar']
             request.user.save()
-            request.user.profile.save()
             messages.success(request, 'profile edited succssfully', 'success')
         return redirect('account:profile', request.user.id)

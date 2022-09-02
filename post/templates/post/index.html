@@ -54,7 +54,7 @@
                   <div class="card shadow-sm card-left3 mb-4">
 
                       <div class="card-body">
-                          <h5 class="card-title">Photos<small class="ml-2"><a href="#">.Edit </a></small></h5>
+                          <h5 class="card-title">Photos<small class="ml-2"></small></h5>
 
                           <div class="row">
                               <div class="col-6 p-1">
@@ -130,7 +130,7 @@
 
 </div>
 <div class="card-footer">
-    <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link btn-sm">View</a>
+    <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link btn-sm">Read More</a>
   {% if request.user.is_authenticated and post.user.id == request.user.id %}
     <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
 
@@ -173,7 +173,7 @@
                 <h6 class="card-title">Sponsored</h6>
                 <img src="{% static 'img/right1.jpg' %}" alt="card-img" class="card-img mb-3">
                 <p class="card-text text-justify"> <span class="h6">It might be time to visit Iceland.</span> Iceland is so chill, and everything looks cool here. Also, we heard the people are pretty nice.  What are you waiting for?</p>
-                <a href="#" class="btn btn-outline-info card-link btn-sm">Buy a ticket</a>
+                <a href="#" class="btn btn-outline-info card-link btn-sm">Read More </a>
 
 
             </div>
@@ -185,7 +185,7 @@
 
             <div class="card-body">
 
-                    <h6 class="card-title ">Likes <a href="#" class="ml-1"><small>.View All</small> </a> </h6>
+                    <h6 class="card-title ">Likes  </h6>
                     <div class="row no-gutters d-none d-lg-flex">
                         <div class="col-6 p-1">
                                 <img src="{% static 'img/avatar-dhg.png' %}" alt="img" width="80px" height="80px" class="rounded-circle mb-4">
@@ -216,31 +216,7 @@
 
         </div>
 
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <p>&copy; 2018 Bootstrap
 
-
-
-                        <a href="#">About</a>
-                        <a href="#">Help</a>
-                        <a href="#">Terms</a>
-                        <a href="#">Privacy</a>
-                        <a href="#">Cookies</a>
-                        <a href="#">Ads </a>
-                        <a href="#">Info</a>
-                        <a href="#">Brand</a>
-                        <a href="#">Blog</a>
-                        <a href="#">Status</a>
-                        <a href="#">Apps</a>
-                        <a href="#">Jobs</a>
-                        <a href="#">Advertise</a>
-                         
-                
-                </p>
-            </div>
-
-        </div>
 
 
 
