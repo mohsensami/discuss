@@ -2,9 +2,9 @@
 
 {% block content %}
     <div class="container">
-        <div class="columns ">
+        <div class="col-md-6 mx-auto columns bg-white p-3 mt-4">
             <div class="column is-two-fifths m-auto">
-                <h1 class="title">Login</h1>
+                <h1 class="title h3">Login</h1>
                 <hr>
                 <form method="POST" novalidate>
                 {% csrf_token %}
@@ -14,4 +14,5 @@
             </div>
         </div>
     </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}

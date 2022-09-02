@@ -27,7 +27,7 @@
           <input type="text" name="search" id="search" placeholder="Search" class="form-control form-control-sm">
       </form>
       <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px;"><i class="far fa-bell ml-3 d-none d-md-block"></i></a> 
-      <img src="{% static 'img/avatar-dhg.png' %}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">
+      {% if request.user.is_authenticated %}<img src="{{ user.profile.avatar.url }}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">{% endif %}
 
 
 

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<br><br>
+<br>
 <!-------------------------------------------Start Grids layout for lg-xl-3 columns and (xs-lg 1 columns)--------------------------------->
 
 
@@ -20,7 +20,7 @@
                   <div class="card card-left1 mb-4" >
                       <img src="img/photo-1455448972184-de647495d428.jpg" alt="" class="card-img-top img-fluid">
                       <div class="card-body text-center ">
-                          <img src="{{user.profile.avatar.url}}" alt="img" width="120px" height="120px" class="rounded-circle mt-n5">
+                          {% if request.user.is_authenticated %} <img src="{{user.profile.avatar.url}}" alt="img" width="120px" height="120px" class="rounded-circle">{% endif %}
                           <h5 class="card-title">{{ request.user.username }}</h5>
                           <p class="card-text text-justify mb-2">I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.</p>
                           <ul class="list-unstyled nav justify-content-center">
@@ -133,6 +133,8 @@
     <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link btn-sm">View</a>
   {% if request.user.is_authenticated and post.user.id == request.user.id %}
     <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
+
+    
   {% endif %}
 </div>
               
@@ -141,6 +143,9 @@
 
 
 </div>
+
+{% empty %}
+      <div class="alert alert-warning">no post added yet </div>
 {% endfor %}
 </div>
 
@@ -248,6 +253,6 @@
 
 
 
-
+</div>
 </div>
 {% endblock %}

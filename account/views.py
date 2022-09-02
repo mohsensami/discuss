@@ -28,7 +28,7 @@ class RegisterView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            User.objects.create_user(cd['username'], cd['email'], cd['password1'])
+            User.objects.create_user(cd['username'], cd['email'], cd['password1'], is_staff=True)
             messages.success(request, 'you registered successfully', 'success')
             return redirect('account:login')
         return render(request, self.template_name, {'form': form})
@@ -139,6 +139,8 @@ class EditUserView(LoginRequiredMixin, View):
         if form.is_valid():
             form.save()
             request.user.email = form.cleaned_data['email']
+            request.user.profile.avatar = form.cleaned_data['avatar']
             request.user.save()
+            request.user.profile.save()
             messages.success(request, 'profile edited succssfully', 'success')
         return redirect('account:profile', request.user.id)

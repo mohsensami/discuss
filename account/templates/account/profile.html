@@ -10,22 +10,19 @@
         
         <img src="{{user.profile.avatar.url}}" alt="img" class="rounded-circle" width="80px" height="80px">
         <h3 class="text-light">{{ user.username }}</h3>
-        <p class="text-light">I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.</p>
+        <p class="text-light">{{ user.profile.bio }}</p>
         {{ user.profile.avatar }}
-    </div>
-
-
-    <div class="banner-end d-flex justify-content-center align-items-end">
         <ul class="nav text-light">
-            <li class="nav-item nav-link active"><a href="{% url 'account:reset_password' %}">Password Reset</a></li>
+                <a class="btn btn-outline-success card-link btn-sm" href="{% url 'account:reset_password' %}">Password Reset</a></li>
             {% if request.user.id != user.id and not is_following %}
-                <li class="nav-item nav-link active"><a href="{% url 'account:user_follow' user.id %}">Follow</a></li>
+                <a class="btn btn-outline-success card-link btn-sm" href="{% url 'account:user_follow' user.id %}">Follow</a></li>
             {% elif request.user.id != user.id and is_following %}
-                <li class="nav-item nav-link active"><a href="{% url 'account:user_unfollow' user.id %}">UnFollow</a></li>
+                <a class="btn btn-outline-success card-link btn-sm" href="{% url 'account:user_unfollow' user.id %}">UnFollow</a></li>
             {% endif %}
         </ul>
-
     </div>
+
+
 
 
     
@@ -37,10 +34,11 @@
 <div class="container my-4">
     <a href="{% url 'post:create' %}" class="btn btn-outline-success card-link btn-sm mb-2">Create</a>
     <a href="{% url 'account:edit_user' %}" class="btn btn-outline-info card-link btn-sm mb-2">Edit Profile</a>
+    <br><br><br><br><br><br><br><br>    
     {% for post in posts %}
 <div class="card mb-2" >
 
-          
+  
        
     <div class="card-body">
     
