@@ -131,7 +131,7 @@ class EditUserView(LoginRequiredMixin, View):
     form_class = EditUserForm
 
     def get(self, request):
-        form = self.form_class(instance=request.user.profile, initial={'email': request.user.email, 'avatar': request.user.profile.avatar})
+        form = self.form_class(instance=request.user.profile, initial={'email': request.user.email})
         return render(request, 'account/edit_profile.html', {'form': form})
 
     def post(self, request):

@@ -185,24 +185,21 @@
 
             <div class="card-body">
 
-                    <h6 class="card-title ">Likes  </h6>
+                    <h6 class="card-title ">Users  </h6>
                     <div class="row no-gutters d-none d-lg-flex">
+                        {% for user in users %}
                         <div class="col-6 p-1">
-                                <img src="{% static 'img/avatar-dhg.png' %}" alt="img" width="80px" height="80px" class="rounded-circle mb-4">
-                                <img src="{% static 'img/avatar-fat.jpg' %}" alt="img" width="80px" height="80px" class="rounded-circle">
-
+                                <img src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px" class="rounded-circle mb-4">
+                                
 
 
                         </div>
                         <div class="col-6 p-1 text-left">
-                            <h6>Jacob Thornton @fat</h6>
+                            <h6>{{ user.username }}</h6>
                             <a href="#" class="btn btn-outline-info btn-sm mb-3"><i class="fas fa-user-friends"></i>Follow </a>
 
-                            <h6>Mark otto</h6>
-                            <a href="#" class="btn btn-outline-info  btn-sm"><i class="fas fa-user-friends"></i>Follow </a>
-
                         </div>
-
+                        {% endfor %}
                     </div>
 
             </div>

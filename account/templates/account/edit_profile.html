@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container mt-4">
-        <form method="POST">
+        <form enctype="multipart/form-data" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
             <input class="btn btn-sm btn-info" type="submit" value="Save" >

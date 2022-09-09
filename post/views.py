@@ -3,6 +3,7 @@ from django import views
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .models import Post, Comment, Vote
+from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import PostCreateUpdateForm, CommentCreateForm, CommentReplyForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -22,7 +23,8 @@ class PostListView(View):
     def get(self, request):
         form = self.form_class()
         posts = Post.objects.all()
-        return render(request, 'post/index.html', {'posts': posts, 'form': form})
+        users = User.objects.all()
+        return render(request, 'post/index.html', {'posts': posts, 'users': users, 'form': form})
 
     @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
