@@ -22,7 +22,7 @@ class PostListView(View):
     form_class = PostCreateUpdateForm
     def get(self, request):
         form = self.form_class()
-        posts = Post.objects.all()
+        posts = Post.objects.filter()
         users = User.objects.all()
         return render(request, 'post/index.html', {'posts': posts, 'users': users, 'form': form})
 

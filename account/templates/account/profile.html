@@ -42,7 +42,7 @@
     <div class="card-body">
     
     <div class="media">
-    <img src="{% static 'img/avatar-dhg.png' %}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
+    <img src="{{ user.profile.avatar.url }}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
     
     <div class="media-body">
     <h2>{{ post.title }}</h2>
