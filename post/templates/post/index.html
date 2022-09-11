@@ -20,11 +20,12 @@
                   <div class="card card-left1 mb-4" >
                       <img src="img/photo-1455448972184-de647495d428.jpg" alt="" class="card-img-top img-fluid">
                       <div class="card-body text-center ">
-                          <img src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px" class="rounded-circle">
+                          <img src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px">
                           <h5 class="card-title">{{ request.user.username }}</h5>
                           <p class="card-text text-justify mb-2">{{ user.profile.bio }}</p>
-                          <ul class="list-unstyled nav justify-content-center">
-                             <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Friends <br> <strong>{{ user.followes.count }}</strong></li></a>
+                          <ul class="list-unstyled nav justify-content-around">
+                             <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Following <br> <strong>{{ user.followes.count }}</strong></li></a>
+                             <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Followers <br> <strong>{{ user.following.count }}</strong></li></a>
                             <!-- <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Enimes <br> <strong>1</strong></li></a>  -->
                           </ul>
 
@@ -32,30 +33,13 @@
 
                   </div>
 
-
-                  <div class="card shadow-sm card-left2 mb-4">
-
-                      <div class="card-body">
-
-                              <h5 class="mb-3 card-title">About <small><a href="#" class="ml-1">Edit</a></small></h5>
-
-                              <!-- <p class="card-text"> <i class="fas fa-calendar-week mr-2"></i> Went to <a href="#" class="text-decoration-none">oh canada</a></p>
-
-                              <p class="card-text"> <i class="fas fa-user-friends mr-2"></i> Become a friend with <a href="#" class="text-decoration-none">obama</a></p> -->
-                              <p class="card-text"> <i class="far fa-building mr-2"></i> Work at <a href="#" class="text-decoration-none">{{ user.profile.work_at }}</a></p>
-                              <p class="card-text"> <i class="fas fa-home mr-2"></i> Live in <a href="#" class="text-decoration-none">{{ user.profile.location }}</a></p>
-                              <p class="card-text"> <i class="fas fa-map-marker mr-2"></i> From <a href="#" class="text-decoration-none">Seattle, WA</a></p>
-
-                      </div>
-
-                  </div>
 {% endif %}
 
                   <div class="card shadow-sm card-left3 mb-4">
 
                       <div class="card-body">
                           <h5 class="card-title">Photos<small class="ml-2"></small></h5>
-
+                            <hr>
                           <div class="row">
                               <div class="col-6 p-1">
                                   <a href="{% static 'img/left1.jpg' %}" data-lightbox="id" ><img src="{% static 'img/left1.jpg' %}" alt="img" class="img-fluid my-2"></a>  
@@ -112,7 +96,7 @@
 <div class="card-body">
 
 <div class="media">
-<img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
+<img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="mr-3">
 
 
 <div class="media-body">
@@ -168,28 +152,17 @@
 
     <div class="right-column">
 
-        <div class="card shadow-sm mb-4" >
-            <div class="card-body">
-                <h6 class="card-title">Sponsored</h6>
-                <img src="{% static 'img/right1.jpg' %}" alt="card-img" class="card-img mb-3">
-                <p class="card-text text-justify"> <span class="h6">It might be time to visit Iceland.</span> Iceland is so chill, and everything looks cool here. Also, we heard the people are pretty nice.  What are you waiting for?</p>
-                <a href="#" class="btn btn-outline-info card-link btn-sm">Read More </a>
-
-
-            </div>
-
-        </div>
+        
 
 
         <div class="card shadow-sm mb-4">
-
             <div class="card-body">
-
-                    <h6 class="card-title ">Users  </h6>
+                    <h5 class="card-title ">Users  </h5>
+                    <hr>
                     <div class="row no-gutters d-none d-lg-flex">
                         {% for user in users %}
                         <div class="col-6 p-1">
-                                <img src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px" class="rounded-circle mb-4">
+                                <img src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px" class="mb-4">
                                 
 
 
@@ -202,23 +175,28 @@
                         {% endfor %}
                     </div>
 
+            </div> 
+</div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                        <h5 class="card-title ">Likes  </h5>
+                        <hr>
+                        <div class="row no-gutters d-none d-lg-flex">
+                            {% for relation in relations %}
+                                <p>{{ relation.from_user }} follows {{ relation.to_user }}</p>
+                            {% endfor %}
+                        </div>
+    
+                </div>
             </div>
-
-            <div class="card-footer">
-
-                <p class="lead" style="font-size:18px;">Dave really likes these nerds, no one knows why though.</p>
-            </div>
-            
-
-
-        </div>
 
 
 
 
 
     </div>
-
+</div>
 
 
             </div>

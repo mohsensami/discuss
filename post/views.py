@@ -3,6 +3,7 @@ from django import views
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .models import Post, Comment, Vote
+from account.models import Relation
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import PostCreateUpdateForm, CommentCreateForm, CommentReplyForm
@@ -24,7 +25,8 @@ class PostListView(View):
         form = self.form_class()
         posts = Post.objects.filter()
         users = User.objects.all()
-        return render(request, 'post/index.html', {'posts': posts, 'users': users, 'form': form})
+        relations = Relation.objects.all()
+        return render(request, 'post/index.html', {'posts': posts, 'users': users, 'relations': relations, 'form': form})
 
     @method_decorator(login_required)
     def post(self, request, *args, **kwargs):

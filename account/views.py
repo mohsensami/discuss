@@ -84,7 +84,7 @@ class ProfileView(LoginRequiredMixin, View):
         return render(request, 'account/profile.html', {'user': user, 'posts': posts, 'is_following': is_following})
 
 
-class UserPasswordResetView(auth_views.PasswordResetView):
+class UserPasswordResetView(LoginRequiredMixin, auth_views.PasswordResetView):
     template_name = 'account/password_reset_form.html'
     success_url = reverse_lazy('account:password_reset_done')
     email_template_name = 'account/password_reset_email.html'
