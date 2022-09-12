@@ -12,7 +12,7 @@ class Relation(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    avatar = models.FileField(upload_to='uploads/avatar/', default='uploads/avatar/default.jpg', verbose_name='avatar')
+    avatar = models.FileField(default='default.jpg', verbose_name='avatar')
     age = models.PositiveSmallIntegerField(default=0)
     location = models.CharField(max_length=30, blank=True)
     work_at = models.TextField(null=True, blank=True)

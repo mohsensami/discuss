@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
     'post.apps.PostConfig',
+
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +139,14 @@ EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = 'lBocqLOu+B^}'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'info@hacoupian.net'
+
+
+
+# ARVAN CLOUD STORAGE
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = 'f3f68bd1-449a-43b9-8342-12f9c5ba3d2a'
+AWS_SECRET_ACCESS_KEY = '60285a8f5fada0e085e578a0c9c3a01ac7eaaf5fd3ff2a8f098a842b25879c73'
+AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.com'
+AWS_STORAGE_BUCKET_NAME = 'django-social'
+AWS_SERVICE_NAME = 's3'
+AWS_S3_FILE_OVERWRITE = False
