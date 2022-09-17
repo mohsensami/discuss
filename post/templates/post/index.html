@@ -24,7 +24,7 @@
                           <h5 class="card-title">{{ request.user.username }}</h5>
                           <p class="card-text text-justify mb-2">{{ user.profile.bio }}</p>
                           <ul class="list-unstyled nav justify-content-around">
-                             <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Following <br> <strong>{{ user.followes.count }}</strong></li></a>
+                             <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Following <br> <strong>{{ user.follower.count }}</strong></li></a>
                              <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Followers <br> <strong>{{ user.following.count }}</strong></li></a>
                             <!-- <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Enimes <br> <strong>1</strong></li></a>  -->
                           </ul>

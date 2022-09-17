@@ -23,9 +23,15 @@ class PostListView(View):
     form_class = PostCreateUpdateForm
     def get(self, request):
         form = self.form_class()
-        posts = Post.objects.filter()
         users = User.objects.all()
         relations = Relation.objects.all()
+        if request.user.is_authenticated:
+            followed_people = Relation.objects.filter(from_user=request.user).values('to_user')
+            posts = Post.objects.filter(
+                user__in=followed_people
+            ) | Post.objects.filter(user=request.user)
+        else:
+            posts = Post.objects.all()
         return render(request, 'post/index.html', {'posts': posts, 'users': users, 'relations': relations, 'form': form})
 
     @method_decorator(login_required)
