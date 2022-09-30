@@ -45,7 +45,7 @@
     <img src="{{ user.profile.avatar.url }}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
     
     <div class="media-body">
-    <h2>{{ post.title }}</h2>
+    <!-- <h2><a href="{% url 'post:detail' post.id post.slug %}">{{ post.body }}</a></h2> -->
     <p class="card-text text-justify">
     {{ post.body }}
     </p>
@@ -59,6 +59,7 @@
     
     </div>
     <div class="card-footer">
+        <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link btn-sm">Read More</a>
       <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
     </div>
                   
