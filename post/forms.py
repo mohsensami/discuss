@@ -8,7 +8,7 @@ class PostCreateUpdateForm(forms.ModelForm):
         model = Post
         fields = ('body', )
         labels = {
-            'body': 'Say Somthing ',
+            'body': 'متنی ارسال کنید',
         }
         widgets = {
             'body': forms.Textarea(attrs={'class':'form-control','rows':1})
@@ -29,7 +29,7 @@ class CommentReplyForm(forms.ModelForm):
         model = Comment
         fields = ('body', )
         labels = {
-            'body': 'Reply',
+            'body': 'پاسخ',
         }
         widgets = {
             'body': forms.Textarea(attrs={'class':'form-control','rows':2})

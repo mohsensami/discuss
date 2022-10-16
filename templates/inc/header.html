@@ -1,33 +1,35 @@
 {% load static %}
 
 <nav class="navbar navbar-expand-md navbar-dark" style="background-color:#3097D1">
-  <a href="{% url 'post:index' %}"" class="navbar-brand"><img src="{% static 'img/brand-white.png' %}" alt="logo" class="img-fluid" width="80px" height="100px"></a>
 
   <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive"><span class="navbar-toggler-icon"></span></button>
 
 
   <div class="collapse navbar-collapse" id="responsive">
-      <ul class="navbar-nav mr-auto text-capitalize">
-          <li class="nav-item"><a href="{% url 'post:index' %}" class="nav-link active">home</a></li>
+    <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px;"><i class="far fa-bell ml-3 d-none d-md-block"></i></a> 
+    {% if request.user.is_authenticated %}<img src="{{ user.profile.avatar.url }}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">{% endif %}
+
+      <ul class="navbar-nav ml-auto p-0">
+          <li class="nav-item"><a href="{% url 'post:index' %}" class="nav-link active">صفحه نخست</a></li>
         
           
 
           {% if request.user.is_authenticated %}
-            <li class="nav-item"><a href="{% url 'account:profile' request.user.id %}" class="nav-link">profile</a></li>
-            <li class="nav-item"><a href="{% url 'account:logout' %}" class="nav-link">logout</a></li>
+            <li class="nav-item"><a href="{% url 'account:profile' request.user.id %}" class="nav-link">پروفایل</a></li>
+            <li class="nav-item"><a href="{% url 'account:logout' %}" class="nav-link">خروج</a></li>
           {% else %}
-            <li class="nav-item"><a href="{% url 'account:register' %}" class="nav-link">Register</a></li>
-            <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">Login</a></li>
+            <li class="nav-item"><a href="{% url 'account:register' %}" class="nav-link">ثبت نام</a></li>
+            <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">ورود</a></li>
           {% endif %}
 
       </ul>
 
-      <form method="GET" action="{% url 'post:search' %}" class="form-inline ml-auto d-none d-md-block">
-          <input class="btn btn-warning btn-sm" type="submit" value="Search" >
-          <input type="text" name="search" id="search" placeholder="Search" class="form-control form-control-sm">
+      <form method="GET" action="{% url 'post:search' %}" class="form-inline mr-auto d-none d-md-block">
+        <input type="text" name="search" id="search" placeholder="چیزی بنویسید..." class="form-control form-control-sm">
+        <input class="btn btn-warning btn-sm" type="submit" value="جستجو" >
       </form>
-      <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px;"><i class="far fa-bell ml-3 d-none d-md-block"></i></a> 
-      {% if request.user.is_authenticated %}<img src="{{ user.profile.avatar.url }}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">{% endif %}
+      <a href="{% url 'post:index' %}"" class="navbar-brand"><img src="{% static 'img/brand-white.png' %}" alt="logo" class="img-fluid" width="80px" height="100px"></a>
+
 
 
 

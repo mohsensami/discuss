@@ -1,16 +1,47 @@
+@font-face {
+    font-family: 'iransansx';
+    src: url('../fonts/iransansx/IRANSansXFaNum-Regular.eot');
+    src: url('../fonts/iransansx/IRANSansXFaNum-Regular.eot#iefix') format('embedded-opentype'),
+    url('../fonts/iransansx/IRANSansXFaNum-Regular.woff') format('woff'),
+    url('../fonts/iransansx/IRANSansXFaNum-Regular.ttf') format('truetype'),
+    url('../fonts/iransansx/IRANSansXFaNum-Regular.woff2') format('woff2'),
+    url('../fonts/iransansx/IRANSans_fa.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'iransansx';
+    src: url('../fonts/iransansx/IRANSansXFaNum-Bold.eot');
+    src: url('../fonts/iransansx/IRANSansXFaNum-Bold.eot#iefix') format('embedded-opentype'),
+    url('../fonts/iransansx/IRANSansXFaNum-Bold.woff') format('woff'),
+    url('../fonts/iransansx/IRANSansXFaNum-Bold.ttf') format('truetype'),
+    url('../fonts/iransansx/IRANSansXFaNum-Bold.svg') format('svg'),
+    url('../fonts/iransansx/IRANSansXFaNum-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
-  }
+}
 
-  body{
-      background-color: #F5F8FA;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      margin: 0;
-      font-weight: 300;
-      line-height: 1.6;
-      color: #212529;
-      text-align: left;
-  }
+body{
+    background-color: #F5F8FA;
+    margin: 0;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #212529;
+    text-align: right;
+    font-family: iransansx !important;
+    font-size: 13px;
+}
+
+h1, h2 {
+    font-size: 18px
+}
+h3, h4, h5 {
+    font-size: 16px
+}
   
 .banner{
     background-image: url(../img/banner.jpg);

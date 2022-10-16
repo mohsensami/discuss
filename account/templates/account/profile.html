@@ -12,11 +12,11 @@
         <h3 class="text-light">{{ user.username }}</h3>
         <p class="text-light">{{ user.profile.bio }}</p>
         <ul class="nav text-light">
-                <a class="btn btn-outline-success card-link btn-sm" href="{% url 'account:reset_password' %}">Password Reset</a></li>
+                <a class="btn btn-outline-success card-link btn-sm" href="{% url 'account:reset_password' %}">بازیابی رمز عبور</a></li>
             {% if request.user.id != user.id and not is_following %}
-                <a class="btn btn-outline-success card-link btn-sm" href="{% url 'account:user_follow' user.id %}">Follow</a></li>
+                <a class="btn btn-outline-success card-link btn-sm" href="{% url 'account:user_follow' user.id %}">فالو</a></li>
             {% elif request.user.id != user.id and is_following %}
-                <a class="btn btn-outline-success card-link btn-sm" href="{% url 'account:user_unfollow' user.id %}">UnFollow</a></li>
+                <a class="btn btn-outline-success card-link btn-sm" href="{% url 'account:user_unfollow' user.id %}">آنفالو</a></li>
             {% endif %}
         </ul>
     </div>
@@ -31,8 +31,8 @@
 
 
 <div class="container my-4">
-    <a href="{% url 'post:create' %}" class="btn btn-outline-success card-link btn-sm mb-2">Create</a>
-    <a href="{% url 'account:edit_user' %}" class="btn btn-outline-info card-link btn-sm mb-2">Edit Profile</a>
+    <a href="{% url 'post:create' %}" class="btn btn-outline-success card-link btn-sm mb-2">افزودن</a>
+    <a href="{% url 'account:edit_user' %}" class="btn btn-outline-info card-link btn-sm mb-2">ویرایش پروفایل</a>
     {% for post in posts %}
      
 <div class="card mb-2" >
@@ -51,7 +51,7 @@
     </p>
     
     </div>
-    <small>{{ post.created }}</small>
+    <small>{{ post.jpublish }}</small>
     
     
     
@@ -59,8 +59,8 @@
     
     </div>
     <div class="card-footer">
-        <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link btn-sm">Read More</a>
-      <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
+        <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link btn-sm">بیشتر</a>
+      <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">حذف</a>
     </div>
                   
     

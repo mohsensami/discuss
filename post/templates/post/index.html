@@ -6,173 +6,177 @@
 <!-------------------------------------------Start Grids layout for lg-xl-3 columns and (xs-lg 1 columns)--------------------------------->
 
 
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
 
 
-            <!--------------------------left columns  start-->
+        <!--------------------------left columns  start-->
 
-            <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-3">
 
-              <div class="left-column">
+            <div class="left-column">
 
-{% if request.user.is_authenticated %} 
-                  <div class="card card-left1 mb-4" >
-                      <img src="img/photo-1455448972184-de647495d428.jpg" alt="" class="card-img-top img-fluid">
-                      <div class="card-body text-center ">
-                          <img class="rounded-circle" src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px">
-                          <h5 class="card-title">{{ request.user.username }}</h5>
-                          <p class="card-text text-justify mb-2">{{ user.profile.bio }}</p>
-                          <ul class="list-unstyled nav justify-content-around">
-                             <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Following <br> <strong>{{ user.follower.count }}</strong></li></a>
-                             <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Followers <br> <strong>{{ user.following.count }}</strong></li></a>
+                {% if request.user.is_authenticated %}
+                <div class="card card-left1 mb-4">
+                    <img src="img/photo-1455448972184-de647495d428.jpg" alt="" class="card-img-top img-fluid">
+                    <div class="card-body text-center ">
+                        <img class="rounded-circle" src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px">
+                        <h5 class="card-title">{{ request.user.username }}</h5>
+                        <p class="card-text text-justify mb-2">{{ user.profile.bio }}</p>
+                        <ul class="list-unstyled nav justify-content-around">
+                            <a href="#" class="text-dark text-decoration-none">
+                                <li class="nav-item">Following <br> <strong>{{ user.follower.count }}</strong></li>
+                            </a>
+                            <a href="#" class="text-dark text-decoration-none">
+                                <li class="nav-item">Followers <br> <strong>{{ user.following.count }}</strong></li>
+                            </a>
                             <!-- <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Enimes <br> <strong>1</strong></li></a>  -->
-                          </ul>
+                        </ul>
 
-                      </div>
+                    </div>
 
-                  </div>
-
-{% endif %}
-
-
-<div class="card shadow-sm mb-4">
-    <div class="card-body">
-            <h5 class="card-title ">Users  </h5>
-            <hr>
-            <div class="row no-gutters d-none d-lg-flex">
-                {% for user in users %}
-                <div class="col-6 p-1">
-                        <img src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px" class="mb-4 rounded-circle">
                 </div>
-                <div class="col-6 p-1 text-left">
-                    <h6><a href="{% url 'account:profile' user.id  %}">{{ user.username }}</a></h6>
-                    <a href="#" class="btn btn-outline-info btn-sm mb-3"><i class="fas fa-user-friends"></i>Follow </a>
+
+                {% endif %}
+
+
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title ">کاربران </h5>
+                        <hr>
+                        <div class="row no-gutters d-none d-lg-flex">
+                            {% for user in users %}
+                            <div class="col-6 p-1">
+                                <img src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px" class="mb-4 rounded-circle">
+                            </div>
+                            <div class="col-6 p-1 text-left">
+                                <h6><a href="{% url 'account:profile' user.id  %}">{{ user.username }}</a></h6>
+                                <a href="#" class="btn btn-outline-info btn-sm mb-3"><i class="fas fa-user-friends"></i>فالو </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
                 </div>
+
+            </div>
+        </div>
+
+        <!--------------------------Ends Left columns-->
+
+        <!---------------------------------------Middle columns  start---------------->
+
+
+        <div class="col-12 col-lg-6">
+            <div class="middle-column">
+
+                <div class="card mb-4">
+                    <div class="card-header bg-transparent">
+                        <form method="post" class="form-inline">
+                            {% csrf_token %}
+                            <div class="input-group w-100">
+                                <form method="POST">
+                                    <div class="input-group">
+                                        {% csrf_token %}
+                                        {{ form }}
+                                        <input class="btn btn-sm btn-info rounded-end" type="submit" value="ارسال">
+                                    </div>
+                                </form>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+                {% for post in posts %}
+                <div class="card mb-2">
+
+                    <div class="card-body">
+
+                        <div class="media">
+                            <img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="ml-3 rounded-circle">
+
+
+                            <div class="media-body">
+                                <h2><a href="{% url 'account:profile' post.user.id  %}">{{ post.user.username }}</a></h2>
+                                <p class="card-text text-justify">
+                                    {{ post.body|truncatewords:20 }}
+                                </p>
+
+                            </div>
+                            <small>{{ post.jpublish }}</small>
+
+
+
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <p class="float-right d-flex text-danger align-items-center pt-2"><i class="far fa-heart ml-1 d-none d-md-block"></i> {{ post.like_count }}</p>
+                        {% if request.user.is_authenticated and post.user.id == request.user.id %}
+                        <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link float-left btn-sm">حذف</a>
+                        {% endif %}
+                        <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link float-left btn-sm">بیشتر</a>
+                    </div>
+
+
+
+
+
+                </div>
+
+                {% empty %}
+                <div class="alert alert-warning">no post added yet </div>
                 {% endfor %}
             </div>
 
-    </div> 
-</div>
-
-              </div>
-          </div>
-
-<!--------------------------Ends Left columns-->
-
-<!---------------------------------------Middle columns  start---------------->
-
-
-<div class="col-12 col-lg-6" >
-  <div class="middle-column">
-
-<div class="card mb-4">
-  <div class="card-header bg-transparent">
-    <form method="post" class="form-inline">
-        {% csrf_token %}
-        <div class="input-group w-100">
-            <form method="POST">
-                <div class="input-group">
-                    {% csrf_token %}
-                    {{ form }}
-                    <input class="btn btn-sm btn-info rounded-end" type="submit" value="post" >
-                </div>
-            </form>
         </div>
-    </form>
-</div>
-</div>
+
+
+        <br> <br> <br><br> <br> <br>
 
 
 
-    {% for post in posts %}
-      <div class="card mb-2" >
-
-<div class="card-body">
-
-<div class="media">
-<img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="mr-3 rounded-circle">
+        <!------------------------Middle column Ends---------------->
 
 
-<div class="media-body">
-<h2><a href="{% url 'account:profile' post.user.id  %}">{{ post.user.username }}</a></h2>
-<p class="card-text text-justify">
-{{ post.body|truncatewords:20 }}
-</p>
-
-</div>
-<small>{{ post.created }}</small>
+        <!---------------------------Statrs Right Columns----------------->
 
 
 
-</div>
+        <div class="col-12 col-lg-3">
 
-</div>
-<div class="card-footer">
-    <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link btn-sm">Read More</a>
-  {% if request.user.is_authenticated and post.user.id == request.user.id %}
-    <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
-  {% endif %}
-  <small class="float-right pt-2">Likes: {{ post.like_count }}</small>
-</div>
-              
+
+            <div class="right-column">
 
 
 
 
-</div>
-
-{% empty %}
-      <div class="alert alert-warning">no post added yet </div>
-{% endfor %}
-</div>
-
-</div>
 
 
-<br> <br> <br><br> <br> <br>
-
-
-
-<!------------------------Middle column Ends---------------->
-
-
-<!---------------------------Statrs Right Columns----------------->
-
-
-                
-<div class="col-12 col-lg-3">
-
-
-    <div class="right-column">
-
-        
-
-
-        
-
-            <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                        <h5 class="card-title ">Likes  </h5>
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title ">Likes </h5>
                         <hr>
                         <div class="row no-gutters d-none d-lg-flex">
                             {% for relation in relations %}
-                                <p>{{ relation.from_user }} follows {{ relation.to_user }}</p>
+                            <p>{{ relation.from_user }} follows {{ relation.to_user }}</p>
                             {% endfor %}
                         </div>
-    
+
+                    </div>
                 </div>
+
+
+
+
+
             </div>
-
-
-
+        </div>
 
 
     </div>
-</div>
-
-
-            </div>
 
 
 

@@ -42,7 +42,7 @@ class PostListView(View):
             new_post.slug = slugify(form.cleaned_data['body'][:30])
             new_post.user = request.user
             new_post.save()
-            messages.success(request, 'Post created successfully', 'success')
+            messages.success(request, 'پست با موفقیت ارسال شد', 'success')
             return redirect('post:index')
 
 
@@ -74,7 +74,7 @@ class PostDetailView(View):
             new_comment.user = request.user
             new_comment.post = self.post_instance
             new_comment.save()
-            messages.success(request, 'your comment submitted successfully', 'success')
+            messages.success(request, 'دیدگاه شما با موفقیت ارسال شد', 'success')
             return redirect('post:detail', self.post_instance.id, self.post_instance.slug)
 
 
@@ -99,7 +99,7 @@ class PostUpdateView(LoginRequiredMixin, View):
     def dispatch(self, request, *args, **kwargs):
         post = self.post_instance
         if not post.user.id == request.user.id:
-            messages.error(request, 'you cant update this post', 'danger')
+            messages.error(request, 'شما اجازه ندارید این پست را ویرایش کنید', 'danger')
             return redirect('post:index')
         return super().dispatch(request, *args, **kwargs)
 
@@ -115,7 +115,7 @@ class PostUpdateView(LoginRequiredMixin, View):
             new_post = form.save(commit=False)
             new_post.slug = slugify(form.cleaned_data['body'][:30])
             new_post.save()
-            messages.success(request, 'Post updated successfully', 'success')
+            messages.success(request, 'پست با موفقیت ویرایش شد', 'success')
             return redirect('post:detail', post.id, post.slug)
 
 
@@ -134,7 +134,7 @@ class PostCreateView(LoginRequiredMixin, View):
             new_post.slug = slugify(form.cleaned_data['body'][:30])
             new_post.user = request.user
             new_post.save()
-            messages.success(request, 'Post created successfully', 'success')
+            messages.success(request, 'پست با موفقیت ثبت شد', 'success')
             return redirect('post:detail', new_post.id, new_post.slug)
 
 
@@ -153,7 +153,7 @@ class PostAddReplyView(LoginRequiredMixin, View):
             reply.reply = comment
             reply.is_reply = True
             reply.save()
-            messages.success(request, 'your reply submitted successfully', 'success')
+            messages.success(request, 'پاسخ با موفقیت ثبت شد', 'success')
         return redirect('post:detail', post.id, post.slug)
 
 
@@ -162,8 +162,8 @@ class PostLikeView(LoginRequiredMixin, View):
         post = get_object_or_404(Post, id=post_id)
         like = Vote.objects.filter(post=post, user=request.user)
         if like.exists():
-            messages.error(request, 'you have already liked this post', 'danger')
+            messages.error(request, 'شما قبلا این پست را لایک کرده اید', 'danger')
         else:
             Vote.objects.create(post=post, user=request.user)
-            messages.success(request, 'you liked this post', 'success')
+            messages.success(request, 'ما این پست را لایک کردید', 'success')
         return redirect('post:detail', post.id, post.slug)

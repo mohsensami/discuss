@@ -1,4 +1,4 @@
-from venv import create
+from extentions.utils import jalali_converter
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -26,6 +26,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.slug
+
+    def jpublish(self):
+        return jalali_converter(self.publish)
+    jpublish.short_description = "زمان انتشار"
 
     def get_absolute_url(self):
         return reverse('post:detail', args=(self.id, self.slug))

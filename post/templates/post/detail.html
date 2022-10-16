@@ -7,13 +7,13 @@
   <div class="card mb-2" >
 
     <div class="card-header">
-      <a href="{% url 'post:post_like' post.id %}" class="{% if is_liked %}disabled{% endif %} btn btn-success btn-sm">Like {{ post.like_count }}</a>
+      <a href="{% url 'post:post_like' post.id %}" class="{% if is_liked %}disabled{% endif %} btn btn-success btn-sm">لایک {{ post.like_count }}</a>
     </div>       
        
     <div class="card-body">
     
     <div class="media">
-    <img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
+    <img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="rounded-circle ml-3">
     
     <div class="media-body">
     <h2>{{ post.user.username }}</h2>
@@ -22,7 +22,7 @@
     </p>
     
     </div>
-    <small>{{ post.created }}</small>
+    <small>{{ post.jpublish }}</small>
     
     
     
@@ -30,19 +30,19 @@
     
     </div>
     <div class="card-footer">
-      <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
-      <a href="{% url 'post:update' post.id %}" class="btn btn-outline-info card-link btn-sm">Edit</a>
+      <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">حذف</a>
+      <a href="{% url 'post:update' post.id %}" class="btn btn-outline-info card-link btn-sm">ویرایش</a>
     </div>
       
     </div>
 
     <div class="card mb-4">
-      <div class="card-header">{{ comments.count }} comments</div>
+      <div class="card-header">{{ comments.count }} دیدگاه</div>
       <div class="media-body p-4">
         <form method="POST">
           {% csrf_token %}
           {{ form }}
-          <input class="btn btn-info btn-sm mt-2" type="submit" value="Comment" >
+          <input class="btn btn-info btn-sm mt-2" type="submit" value="ارسال" >
         </form>
       </div>
       
@@ -59,7 +59,7 @@
             <form action="{% url 'post:add_reply' post.id comment.id %}" method="POST">
               {% csrf_token %}
               {{ reply }}
-              <input class="btn btn-info btn-sm my-2" type="submit" value="Reply" >
+              <input class="btn btn-info btn-sm my-2" type="submit" value="پاسخ" >
             </form>
           </div>
 
@@ -78,7 +78,7 @@
     </div>
   
     {% empty %}
-      <div class="alert alert-warning">no comments submited yet</div>
+      <div class="alert alert-warning">دیدگاهی ارسال نشده است</div>
 
   {% endfor %}
   

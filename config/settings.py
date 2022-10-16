@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'post.apps.PostConfig',
 
-    'storages'
+    'storages',
+    'extentions'
 ]
 
 MIDDLEWARE = [

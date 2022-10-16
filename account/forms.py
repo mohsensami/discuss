@@ -6,12 +6,12 @@ from account.models import Profile
 
 
 class UserRegistrationForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
-    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    username = forms.CharField(label='نام کاربری', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'نام کاربری'}))
+    email = forms.CharField(label='ایمیل', widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'ایمیل'}))
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'Password'}))
-    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}))
+        attrs={'class': 'form-control', 'placeholder': 'رمز عبور'}))
+    password2 = forms.CharField(label='تکرار رمز عبور', widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'تکرار رمز عبور'}))
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -37,8 +37,8 @@ class UserRegistrationForm(forms.Form):
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
-    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    username = forms.CharField(label='نام کاربری', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'نام کاربری'}))
+    password = forms.CharField(label='رمز عبور', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'رمز عبور'}))
 
 
 
