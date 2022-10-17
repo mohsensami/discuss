@@ -20,10 +20,10 @@
                 <div class="card card-left1 mb-4">
                     <img src="img/photo-1455448972184-de647495d428.jpg" alt="" class="card-img-top img-fluid">
                     <div class="card-body text-center ">
-                        <img class="rounded-circle" src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px">
+                        <img class="rounded-circle mb-2" src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px">
                         <h5 class="card-title">{{ request.user.username }}</h5>
                         <p class="card-text text-justify mb-2">{{ user.profile.bio }}</p>
-                        <ul class="list-unstyled nav justify-content-around">
+                        <ul class="list-unstyled nav justify-content-around p-0">
                             <a href="#" class="text-dark text-decoration-none">
                                 <li class="nav-item">Following <br> <strong>{{ user.follower.count }}</strong></li>
                             </a>
@@ -50,7 +50,7 @@
                                 <img src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px" class="mb-4 rounded-circle">
                             </div>
                             <div class="col-6 p-1 text-left">
-                                <h6><a href="{% url 'account:profile' user.id  %}">{{ user.username }}</a></h6>
+                                <h6><a class="text-dark" href="{% url 'account:profile' user.id  %}">{{ user.username }}</a></h6>
                                 <a href="#" class="btn btn-outline-info btn-sm mb-3"><i class="fas fa-user-friends"></i>فالو </a>
                             </div>
                             {% endfor %}
@@ -99,7 +99,7 @@
 
 
                             <div class="media-body">
-                                <h2><a href="{% url 'account:profile' post.user.id  %}">{{ post.user.username }}</a></h2>
+                                <h2><a class="text-dark" href="{% url 'account:profile' post.user.id  %}">{{ post.user.username }}</a></h2>
                                 <p class="card-text text-justify">
                                     {{ post.body|truncatewords:20 }}
                                 </p>
@@ -127,7 +127,7 @@
                 </div>
 
                 {% empty %}
-                <div class="alert alert-warning">no post added yet </div>
+                <div class="alert alert-warning">هیچ پستی اضافه نشده است </div>
                 {% endfor %}
             </div>
 
@@ -157,7 +157,7 @@
 
                 <div class="card shadow-sm mb-4">
                     <div class="card-body">
-                        <h5 class="card-title ">Likes </h5>
+                        <h5 class="card-title ">لایک ها </h5>
                         <hr>
                         <div class="row no-gutters d-none d-lg-flex">
                             {% for relation in relations %}
