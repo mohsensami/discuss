@@ -47,7 +47,7 @@
                         <div class="row no-gutters d-none d-lg-flex">
                             {% for user in users %}
                             <div class="col-6 p-1">
-                                <img src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px" class="mb-4 rounded-circle">
+                                <a class="text-dark" href="{% url 'account:profile' user.id  %}"><img src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px" class="mb-4 rounded-circle"></a>
                             </div>
                             <div class="col-6 p-1 text-left">
                                 <h6><a class="text-dark" href="{% url 'account:profile' user.id  %}">{{ user.username }}</a></h6>
@@ -95,7 +95,7 @@
                     <div class="card-body">
 
                         <div class="media">
-                            <img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="ml-3 rounded-circle">
+                            <a href="{% url 'account:profile' post.user.id  %}"><img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="ml-3 rounded-circle"></a>
 
 
                             <div class="media-body">

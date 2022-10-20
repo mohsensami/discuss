@@ -4,9 +4,16 @@
 
   <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive"><span class="navbar-toggler-icon"></span></button>
 
-
+  {% if not request.user.is_authenticated %} 
   <div class="collapse navbar-collapse" id="responsive">
-    <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px;"><i class="far fa-bell ml-3 d-none d-md-block"></i></a> 
+    <a class="text-decoration-none position-relative" style="color:#CBE4F2;font-size:22px;" 
+    type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" 
+    
+    data-content="<div>شما وارد سایت نشده اید. لطفا وارد شوید و دوباره امتحان کنید</div>"
+    
+    ><i class="far fa-bell ml-3 d-none d-md-block"></i><small style="top: -9px;left: 8px;font-size: 12px;" class="badge badge-danger position-absolute rounded-circle">1</small></a> 
+    {% endif %}
+
     {% if request.user.is_authenticated %}<img src="{{ user.profile.avatar.url }}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">{% endif %}
 
       <ul class="navbar-nav ml-auto p-0">

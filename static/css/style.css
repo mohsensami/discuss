@@ -25,14 +25,14 @@
     box-sizing: border-box;
 }
 
-body{
+body, .popover{
+    font-family: iransansx !important;
     background-color: #F5F8FA;
     margin: 0;
     font-weight: 300;
     line-height: 1.6;
     color: #212529;
     text-align: right;
-    font-family: iransansx !important;
     font-size: 13px;
 }
 
