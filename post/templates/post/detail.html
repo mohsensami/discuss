@@ -7,7 +7,7 @@
   <div class="card mb-2" >
 
     <div class="card-header">
-      <a href="{% url 'post:post_like' post.id %}" class="{% if is_liked %}disabled{% endif %} btn btn-success btn-sm">لایک {{ post.like_count }}</a>
+      <a href="{% url 'post:post_like' post.id %}" class="{% if is_liked %}disabled{% endif %} btn btn-outline-success btn-sm">لایک {{ post.like_count }}</a>
     </div>       
        
     <div class="card-body">
@@ -67,14 +67,14 @@
             <div class="card">
               <div class="card-header">{{ reply.user }}</div>
               <div class="card-body">{{ reply.body }}</div>
-              <div class="card-footer">{{ reply.created|timesince }}</div>
+              <div class="card-footer text-left">{{ reply.created|timesince }}</div>
               
             </div>
             
           {% endfor %}
         
       </div>
-      <div class="card-footer">{{ comment.created|timesince }}</div>
+      <div class="card-footer text-left">{{ comment.created|timesince }}</div>
     </div>
   
     {% empty %}

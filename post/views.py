@@ -15,8 +15,11 @@ from django.utils.decorators import method_decorator
 
 class SearchView(View):
     def get(self, request):
-        posts = Post.objects.filter(body__icontains = request.GET['search'])
-        return render(request, 'post/search.html', {'posts': posts})
+        if (request.GET.get('search')):
+            posts = Post.objects.filter(body__icontains = request.GET['search'])
+            return render(request, 'post/search.html', {'posts': posts})
+        else:
+            return redirect('post:index')
 
 
 class PostListView(View):
@@ -64,7 +67,8 @@ class PostDetailView(View):
                 is_liked = False
         else:
             is_liked = True
-        return render(request, 'post/detail.html', {'post': self.post_instance, 'comments': comments, 'form': self.form_class, 'reply':self.reply_form, 'is_liked':is_liked})
+        return render(request, 'post/detail.html', {'post': self.post_instance, 'comments': comments, \
+             'form': self.form_class, 'reply':self.reply_form, 'is_liked':is_liked})
 
     @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
@@ -78,14 +82,14 @@ class PostDetailView(View):
             return redirect('post:detail', self.post_instance.id, self.post_instance.slug)
 
 
-class PostDeleteView(View):
+class PostDeleteView(LoginRequiredMixin, View):
     def get(self, request, post_id):
         post = get_object_or_404(Post, pk=post_id)
         if request.user.id == post.user.id:
             post.delete()
-            messages.success(request, 'post deleted successfully', 'success')
+            messages.success(request, 'پست با موفقیت حذف شد', 'success')
         else:
-            messages.error(request, 'you cant delete this post', 'danger')
+            messages.error(request, 'شما دسترسی لازم برای حذف این پست را ندارید', 'danger')
         return redirect('post:index')
 
 
@@ -165,5 +169,5 @@ class PostLikeView(LoginRequiredMixin, View):
             messages.error(request, 'شما قبلا این پست را لایک کرده اید', 'danger')
         else:
             Vote.objects.create(post=post, user=request.user)
-            messages.success(request, 'ما این پست را لایک کردید', 'success')
+            messages.success(request, 'پست لایک شد', 'success')
         return redirect('post:detail', post.id, post.slug)

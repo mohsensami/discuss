@@ -113,11 +113,13 @@
 
                     </div>
                     <div class="card-footer">
-                        <p class="float-right d-flex text-danger align-items-center pt-2"><i class="far fa-heart ml-1 d-none d-md-block"></i> {{ post.like_count }}</p>
+                        <p class="float-left d-flex text-danger align-items-center pt-2"><i class="far fa-heart ml-1 d-none d-md-block"></i> {{ post.like_count }}</p>
+                        <div class="btn-group" dir="ltr" role="group" aria-label="First group"> 
                         {% if request.user.is_authenticated and post.user.id == request.user.id %}
-                        <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link float-left btn-sm">حذف</a>
+                            <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link float-left btn-sm">حذف</a>
                         {% endif %}
-                        <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link float-left btn-sm">بیشتر</a>
+                            <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link float-left btn-sm">بیشتر</a>
+                        </div>
                     </div>
 
 

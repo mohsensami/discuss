@@ -34,7 +34,6 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ['-status', '-publish']
     actions = [make_published, make_draft]
 
-
 admin.site.register(Post, PostAdmin)
 
 

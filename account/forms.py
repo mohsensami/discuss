@@ -17,14 +17,14 @@ class UserRegistrationForm(forms.Form):
         email = self.cleaned_data['email']
         user = User.objects.filter(email=email).exists()
         if user:
-            raise ValidationError('This email already exists')
+            raise ValidationError('ایمیل از قبل موجود است')
         return email
 
     def clean_username(self):
         username = self.cleaned_data['username']
         user = User.objects.filter(username=username).exists()
         if user:
-            raise ValidationError('This username already exists')
+            raise ValidationError('نام کاربری از قبل موجود است')
         return username
 
     def clean(self):
@@ -33,7 +33,7 @@ class UserRegistrationForm(forms.Form):
         p2 = cd.get('password2')
 
         if p1 and p2 and p1 != p2:
-            raise ValidationError('password missmatch!')
+            raise ValidationError('رمز عبور باهم مطابقت ندارد')
 
 
 class UserLoginForm(forms.Form):
@@ -43,11 +43,19 @@ class UserLoginForm(forms.Form):
 
 
 class EditUserForm(forms.ModelForm):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(label='ایمیل', widget=forms.EmailInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Profile
         fields = ('avatar', 'age', 'bio', 'work_at', 'location')
+        labels = {
+            'avatar': 'آوتار',
+            'bio': 'بیوگرافی',
+            'age': 'سن',
+            'birth_date': 'تاریخ تولد',
+            'location': 'محل سکونت',
+            'work_at': 'محل کار',
+        }
         widgets = {
             'bio': forms.Textarea(attrs={'class':'form-control','rows':10}),
             'age': forms.NumberInput(attrs={'class':'form-control'}),

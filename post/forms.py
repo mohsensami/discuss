@@ -19,6 +19,9 @@ class CommentCreateForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body', )
+        labels = {
+            'body': 'دیدگاه',
+        }
         widgets = {
             'body': forms.Textarea(attrs={'class':'form-control','rows':10})
         }

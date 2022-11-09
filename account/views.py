@@ -1,5 +1,5 @@
 from urllib import request
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .forms import UserRegistrationForm, UserLoginForm, EditUserForm
 from django.contrib.auth.models import User
@@ -76,7 +76,7 @@ class LogoutView(LoginRequiredMixin, View):
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request, user_id):
         is_following = False
-        user = User.objects.get(pk=user_id)
+        user = get_object_or_404(User, pk=user_id)
         posts = user.posts.all()
         relation = Relation.objects.filter(from_user=request.user, to_user=user)
         if relation.exists():

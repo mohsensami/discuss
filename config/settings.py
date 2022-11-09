@@ -134,12 +134,12 @@ LOGIN_URL = '/account/login/'
 
 # Google account
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.hacoupian.net'
-EMAIL_HOST_USER = 'info@hacoupian.net'
-EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD = 'lBocqLOu+B^}'
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '4f679c3da68591'
+EMAIL_PORT = '2525'
+EMAIL_HOST_PASSWORD = '8a222c999f93a4'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'info@hacoupian.net'
+DEFAULT_FROM_EMAIL = 'mailtrap.io'
 
 
 

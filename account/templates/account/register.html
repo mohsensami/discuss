@@ -6,7 +6,7 @@
             <div class="column is-two-fifths m-auto">
                 <h1 class="title h3">ثبت نام</h1>
                 <hr>
-                <form method="POST" novalidate>
+            <form method="POST" novalidate>
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button class="btn btn-info mt-2">ثبت نام</button>
