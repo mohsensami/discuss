@@ -22,7 +22,7 @@
                     <div class="card-body text-center ">
                         <img class="rounded-circle mb-2" src="{{user.profile.avatar.url}}" alt="img" width="80px" height="80px">
                         <h5 class="card-title">{{ request.user.username }}</h5>
-                        <p class="card-text text-justify mb-2">{{ user.profile.bio }}</p>
+                        <!-- <p class="card-text mb-2">{{ user.profile.bio }}</p> -->
                         <ul class="list-unstyled nav justify-content-around p-0">
                             <a href="#" class="text-dark text-decoration-none">
                                 <li class="nav-item">Following <br> <strong>{{ user.follower.count }}</strong></li>
@@ -42,7 +42,7 @@
 
                 <div class="card shadow-sm mb-4">
                     <div class="card-body">
-                        <h5 class="card-title ">کاربران </h5>
+                        <h5 class="card-title ">Users </h5>
                         <hr>
                         <div class="row no-gutters d-none d-lg-flex">
                             {% for user in users %}
@@ -51,7 +51,7 @@
                             </div>
                             <div class="col-6 p-1 text-left">
                                 <h6><a class="text-dark" href="{% url 'account:profile' user.id  %}">{{ user.username }}</a></h6>
-                                <a href="#" class="btn btn-outline-info btn-sm mb-3"><i class="fas fa-user-friends"></i>فالو </a>
+                                <a href="#" class="btn btn-outline-info btn-sm mb-3"><i class="fas fa-user-friends"></i>Follow </a>
                             </div>
                             {% endfor %}
                         </div>
@@ -79,7 +79,7 @@
                                     <div class="input-group">
                                         {% csrf_token %}
                                         {{ form }}
-                                        <input class="btn btn-sm btn-info rounded-end" type="submit" value="ارسال">
+                                        <input class="btn btn-sm btn-block btn-info rounded-end mt-2" type="submit" value="Send">
                                     </div>
                                 </form>
                             </div>
@@ -95,7 +95,7 @@
                     <div class="card-body">
 
                         <div class="media">
-                            <a href="{% url 'account:profile' post.user.id  %}"><img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="ml-3 rounded-circle"></a>
+                            <a href="{% url 'account:profile' post.user.id  %}"><img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="mr-3 rounded-circle"></a>
 
 
                             <div class="media-body">
@@ -105,7 +105,7 @@
                                 </p>
 
                             </div>
-                            <small>{{ post.jpublish }}</small>
+                            <small>{{ post.publish }}</small>
 
 
 
@@ -113,12 +113,12 @@
 
                     </div>
                     <div class="card-footer">
-                        <p class="float-left d-flex text-danger align-items-center pt-2"><i class="far fa-heart ml-1 d-none d-md-block"></i> {{ post.like_count }}</p>
+                        <p class="float-right d-flex text-danger align-items-center pt-2"> {{ post.like_count }}  <i class="far fa-heart ml-1 d-none d-md-block"></i></p>
                         <div class="btn-group" dir="ltr" role="group" aria-label="First group"> 
                         {% if request.user.is_authenticated and post.user.id == request.user.id %}
-                            <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link float-left btn-sm">حذف</a>
+                            <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link float-left btn-sm">Delete</a>
                         {% endif %}
-                            <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link float-left btn-sm">بیشتر</a>
+                            <a href="{{ post.get_absolute_url }}" class="btn btn-outline-info card-link float-left btn-sm">More</a>
                         </div>
                     </div>
 
@@ -129,7 +129,7 @@
                 </div>
 
                 {% empty %}
-                <div class="alert alert-warning">هیچ پستی اضافه نشده است </div>
+                <div class="alert alert-warning">No Post here</div>
                 {% endfor %}
             </div>
 
@@ -159,7 +159,7 @@
 
                 <div class="card shadow-sm mb-4">
                     <div class="card-body">
-                        <h5 class="card-title ">لایک ها </h5>
+                        <h5 class="card-title ">Likes</h5>
                         <hr>
                         <div class="row no-gutters d-none d-lg-flex">
                             {% for relation in relations %}

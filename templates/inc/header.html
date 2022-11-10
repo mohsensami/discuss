@@ -4,42 +4,42 @@
 
   <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive"><span class="navbar-toggler-icon"></span></button>
 
-  {% if not request.user.is_authenticated %} 
+  <a href="{% url 'post:index' %}"" class="navbar-brand"><img src="{% static 'img/brand-white.png' %}" alt="logo" class="img-fluid" width="80px" height="100px"></a>
+
   <div class="collapse navbar-collapse" id="responsive">
+
+    
+    
+    <ul class="navbar-nav mr-auto p-0">
+      <li class="nav-item"><a href="{% url 'post:index' %}" class="nav-link active">Home </a></li>
+      
+      
+      
+      {% if request.user.is_authenticated %}
+      <li class="nav-item"><a href="{% url 'account:profile' request.user.id %}" class="nav-link">Profile</a></li>
+      <li class="nav-item"><a href="{% url 'account:logout' %}" class="nav-link">Logout</a></li>
+      {% else %}
+      <li class="nav-item"><a href="{% url 'account:register' %}" class="nav-link">Register </a></li>
+      <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">Login</a></li>
+      {% endif %}
+      
+    </ul>
+    
+    <form method="GET" action="{% url 'post:search' %}" class="form-inline ml-auto d-none d-md-block">
+      <input type="text" name="search" id="search" placeholder="Type somthing ..." class="form-control form-control-sm">
+      <input class="btn btn-warning btn-sm" type="submit" value="Search" >
+    </form>
+    
+    
     <a class="text-decoration-none position-relative" style="color:#CBE4F2;font-size:22px;" 
     type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" 
     
-    data-content="<div>شما وارد سایت نشده اید. لطفا وارد شوید و دوباره امتحان کنید</div>"
+    data-content="<div>You dont login to site please login and try again</div>"
     
     ><i class="far fa-bell ml-3 d-none d-md-block"></i><small style="top: -9px;left: 8px;font-size: 12px;" class="badge badge-danger position-absolute rounded-circle">1</small></a> 
-    {% endif %}
+
 
     {% if request.user.is_authenticated %}<img src="{{ user.profile.avatar.url }}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">{% endif %}
-
-      <ul class="navbar-nav ml-auto p-0">
-          <li class="nav-item"><a href="{% url 'post:index' %}" class="nav-link active">صفحه نخست</a></li>
-        
-          
-
-          {% if request.user.is_authenticated %}
-            <li class="nav-item"><a href="{% url 'account:profile' request.user.id %}" class="nav-link">پروفایل</a></li>
-            <li class="nav-item"><a href="{% url 'account:logout' %}" class="nav-link">خروج</a></li>
-          {% else %}
-            <li class="nav-item"><a href="{% url 'account:register' %}" class="nav-link">ثبت نام</a></li>
-            <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">ورود</a></li>
-          {% endif %}
-
-      </ul>
-
-      <form method="GET" action="{% url 'post:search' %}" class="form-inline mr-auto d-none d-md-block">
-        <input type="text" name="search" id="search" placeholder="چیزی بنویسید..." class="form-control form-control-sm">
-        <input class="btn btn-warning btn-sm" type="submit" value="جستجو" >
-      </form>
-      <a href="{% url 'post:index' %}"" class="navbar-brand"><img src="{% static 'img/brand-white.png' %}" alt="logo" class="img-fluid" width="80px" height="100px"></a>
-
-
-
-
 
 
   </div>

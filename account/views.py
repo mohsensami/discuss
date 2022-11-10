@@ -29,7 +29,7 @@ class RegisterView(View):
         if form.is_valid():
             cd = form.cleaned_data
             User.objects.create_user(cd['username'], cd['email'], cd['password1'], is_staff=True)
-            messages.success(request, 'با موفقیت ثبت نام کردید', 'success')
+            messages.success(request, 'You logged in successfully', 'success')
             return redirect('account:login')
         return render(request, self.template_name, {'form': form})
 
@@ -58,18 +58,18 @@ class LoginView(View):
             user = authenticate(request, username=cd['username'], password=cd['password'])
             if user is not None:
                 login(request, user)
-                messages.success(request, 'با موفقیت وارد شدید', 'success')
+                messages.success(request, 'You loggedin successfully', 'success')
                 if self.next:
                     return redirect(self.next)
                 return redirect('post:index')
-            messages.error(request, 'نام کاربری یا رمز عبور اشتباه است', 'warning')
+            messages.error(request, 'Username or password is wrong', 'warning')
         return render(request, self.template_name, {'form': form})
 
 
 class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
-        messages.success(request, 'با موفقیت خارج شدین', 'success')
+        messages.success(request, 'You Logged out successfully', 'success')
         return redirect('post:index')
 
 
@@ -108,10 +108,10 @@ class UserFollowView(LoginRequiredMixin, View):
         user = User.objects.get(id = user_id)
         relation = Relation.objects.filter(from_user=request.user, to_user=user)
         if relation.exists():
-            messages.error(request, 'شما قبلا این کاربر را دنبال کردید', 'danger')
+            messages.error(request, 'You already Follow this user', 'danger')
         else:
             Relation(from_user=request.user, to_user=user).save()
-            messages.success(request, 'این کاربر را دنبال کرده اید', 'success')
+            messages.success(request, 'User Followed', 'success')
         return redirect ('account:profile', user.id)
 
 
@@ -121,9 +121,9 @@ class UserUnfollowView(LoginRequiredMixin, View):
         relation = Relation.objects.filter(from_user=request.user, to_user=user)
         if relation.exists():
             relation.delete()
-            messages.success(request, 'این کاربر آنفالو شد', 'success')
+            messages.success(request, 'unfollowed', 'success')
         else:
-            messages.error(request, 'این کاربر را فالو نکرده اید', 'danger')
+            messages.error(request, 'This user is not followed', 'danger')
         return redirect('account:profile', user.id)
 
 
@@ -140,5 +140,5 @@ class EditUserView(LoginRequiredMixin, View):
             form.save()
             request.user.email = form.cleaned_data['email']
             request.user.save()
-            messages.success(request, 'پروفایل شما با موفقیت ویرایش شد', 'success')
+            messages.success(request, 'Your Profile edited successfully', 'success')
         return redirect('account:profile', request.user.id)

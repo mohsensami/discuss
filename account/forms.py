@@ -6,25 +6,25 @@ from account.models import Profile
 
 
 class UserRegistrationForm(forms.Form):
-    username = forms.CharField(label='نام کاربری', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'نام کاربری'}))
-    email = forms.CharField(label='ایمیل', widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'ایمیل'}))
+    username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ' Username'}))
+    email = forms.CharField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'رمز عبور'}))
-    password2 = forms.CharField(label='تکرار رمز عبور', widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'تکرار رمز عبور'}))
+    password2 = forms.CharField(label='re Password', widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 're Password'}))
 
     def clean_email(self):
         email = self.cleaned_data['email']
         user = User.objects.filter(email=email).exists()
         if user:
-            raise ValidationError('ایمیل از قبل موجود است')
+            raise ValidationError('This Email already exist')
         return email
 
     def clean_username(self):
         username = self.cleaned_data['username']
         user = User.objects.filter(username=username).exists()
         if user:
-            raise ValidationError('نام کاربری از قبل موجود است')
+            raise ValidationError('This Username already exist')
         return username
 
     def clean(self):
@@ -33,28 +33,28 @@ class UserRegistrationForm(forms.Form):
         p2 = cd.get('password2')
 
         if p1 and p2 and p1 != p2:
-            raise ValidationError('رمز عبور باهم مطابقت ندارد')
+            raise ValidationError('Password missmatch')
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField(label='نام کاربری', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'نام کاربری'}))
-    password = forms.CharField(label='رمز عبور', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'رمز عبور'}))
+    username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
 
 
 
 class EditUserForm(forms.ModelForm):
-    email = forms.EmailField(label='ایمیل', widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Profile
         fields = ('avatar', 'age', 'bio', 'work_at', 'location')
         labels = {
-            'avatar': 'آوتار',
-            'bio': 'بیوگرافی',
-            'age': 'سن',
-            'birth_date': 'تاریخ تولد',
-            'location': 'محل سکونت',
-            'work_at': 'محل کار',
+            'avatar': 'Avatar',
+            'bio': 'Biography',
+            'age': 'age',
+            'birth_date': 'Birthdate',
+            'location': 'location',
+            'work_at': 'work at',
         }
         widgets = {
             'bio': forms.Textarea(attrs={'class':'form-control','rows':10}),

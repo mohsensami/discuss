@@ -8,10 +8,10 @@ class PostCreateUpdateForm(forms.ModelForm):
         model = Post
         fields = ('body', )
         labels = {
-            'body': 'متنی ارسال کنید',
+            'body': '',
         }
         widgets = {
-            'body': forms.Textarea(attrs={'class':'form-control','rows':1})
+            'body': forms.Textarea(attrs={'class':'form-control','rows':1, 'cols': 60})
         }
 
 
@@ -20,7 +20,7 @@ class CommentCreateForm(forms.ModelForm):
         model = Comment
         fields = ('body', )
         labels = {
-            'body': 'دیدگاه',
+            'body': 'Comment',
         }
         widgets = {
             'body': forms.Textarea(attrs={'class':'form-control','rows':10})
@@ -32,7 +32,7 @@ class CommentReplyForm(forms.ModelForm):
         model = Comment
         fields = ('body', )
         labels = {
-            'body': 'پاسخ',
+            'body': 'Reply',
         }
         widgets = {
             'body': forms.Textarea(attrs={'class':'form-control','rows':2})

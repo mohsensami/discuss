@@ -9,9 +9,9 @@
     <div class="banner-title d-flex flex-column justify-content-center align-items-center">
         
         <img src="{{user.profile.avatar.url}}" alt="img" class="rounded-circle mb-2" width="80px" height="80px">
-        <h3 class="text-light">{{ user.username }}</h3>
-        <p class="text-light col-md-6">{{ user.profile.bio }}</p>
-        <ul class="nav text-light p-0">
+        <h3 class="Username or password is wrong">{{ user.username }}</h3>
+        <p class="Username or password is wrong col-md-6">{{ user.profile.bio }}</p>
+        <ul class="nav Username or password is wrong p-0">
             <div class="btn-group" dir="ltr" role="group" aria-label="First group"> 
                 <a class="btn btn-info card-link" href="{% url 'account:reset_password' %}"> Password Reset </a></li>
             {% if request.user.id != user.id and not is_following %}
@@ -48,7 +48,7 @@
     <div class="card-body">
     
     <div class="media">
-    <img src="{{ user.profile.avatar.url }}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
+    <img src="{{ user.profile.avatar.url }}" alt="img" width="55px" height="55px" class="rounded-circle ml-3">
     
     <div class="media-body">
     <!-- <h2><a href="{% url 'post:detail' post.id post.slug %}">{{ post.body }}</a></h2> -->

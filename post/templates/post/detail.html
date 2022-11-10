@@ -7,13 +7,13 @@
   <div class="card mb-2" >
 
     <div class="card-header">
-      <a href="{% url 'post:post_like' post.id %}" class="{% if is_liked %}disabled{% endif %} btn btn-outline-success btn-sm">لایک {{ post.like_count }}</a>
+      <a href="{% url 'post:post_like' post.id %}" class="{% if is_liked %}disabled{% endif %} btn btn-outline-success btn-sm">Like {{ post.like_count }}</a>
     </div>       
        
     <div class="card-body">
     
     <div class="media">
-    <img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="rounded-circle ml-3">
+    <img src="{{post.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
     
     <div class="media-body">
     <h2>{{ post.user.username }}</h2>
@@ -22,7 +22,7 @@
     </p>
     
     </div>
-    <small>{{ post.jpublish }}</small>
+    <small>{{ post.publish }}</small>
     
     
     
@@ -30,19 +30,19 @@
     
     </div>
     <div class="card-footer">
-      <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">حذف</a>
-      <a href="{% url 'post:update' post.id %}" class="btn btn-outline-info card-link btn-sm">ویرایش</a>
+      <a href="{% url 'post:delete' post.id %}" class="btn btn-outline-danger card-link btn-sm">Delete</a>
+      <a href="{% url 'post:update' post.id %}" class="btn btn-outline-info card-link btn-sm">Edit</a>
     </div>
       
     </div>
 
     <div class="card mb-4">
-      <div class="card-header">{{ comments.count }} دیدگاه</div>
+      <div class="card-header">{{ comments.count }} Comment</div>
       <div class="media-body p-4">
         <form method="POST">
           {% csrf_token %}
           {{ form }}
-          <input class="btn btn-info btn-sm mt-2" type="submit" value="ارسال" >
+          <input class="btn btn-info btn-sm mt-2" type="submit" value="Send" >
         </form>
       </div>
       
@@ -51,34 +51,29 @@
     {% for comment in comments %}
     <div class="card mb-3">
       <div class="card-header">{{ comment.user }}</div>
-      <div class="card-body ">
-        
+      <div class="card-body ">      
           <div class="pb-3">{{ comment.body }}</div>
-          
-          <div class="">
+          {% for reply in comment.rcomments.all %}
+          <div class="card">
+            <div class="card-header">{{ reply.user }}</div>
+            <div class="card-body">{{ reply.body }}</div>
+            <div class="card-footer text-left">{{ reply.created|timesince }}</div>
+          </div>
+          {% endfor %}
+          <div class="mt-3">
             <form action="{% url 'post:add_reply' post.id comment.id %}" method="POST">
               {% csrf_token %}
               {{ reply }}
-              <input class="btn btn-info btn-sm my-2" type="submit" value="پاسخ" >
+              <input class="btn btn-info btn-sm my-2" type="submit" value="Reply" >
             </form>
           </div>
-
-          {% for reply in comment.rcomments.all %}
-            <div class="card">
-              <div class="card-header">{{ reply.user }}</div>
-              <div class="card-body">{{ reply.body }}</div>
-              <div class="card-footer text-left">{{ reply.created|timesince }}</div>
-              
-            </div>
-            
-          {% endfor %}
         
       </div>
       <div class="card-footer text-left">{{ comment.created|timesince }}</div>
     </div>
   
     {% empty %}
-      <div class="alert alert-warning">دیدگاهی ارسال نشده است</div>
+      <div class="alert alert-warning">No comments here</div>
 
   {% endfor %}
   

@@ -45,7 +45,7 @@ class PostListView(View):
             new_post.slug = slugify(form.cleaned_data['body'][:30])
             new_post.user = request.user
             new_post.save()
-            messages.success(request, 'پست با موفقیت ارسال شد', 'success')
+            messages.success(request, 'Post submited', 'success')
             return redirect('post:index')
 
 
@@ -78,7 +78,7 @@ class PostDetailView(View):
             new_comment.user = request.user
             new_comment.post = self.post_instance
             new_comment.save()
-            messages.success(request, 'دیدگاه شما با موفقیت ارسال شد', 'success')
+            messages.success(request, 'Your comment submited', 'success')
             return redirect('post:detail', self.post_instance.id, self.post_instance.slug)
 
 
@@ -87,9 +87,9 @@ class PostDeleteView(LoginRequiredMixin, View):
         post = get_object_or_404(Post, pk=post_id)
         if request.user.id == post.user.id:
             post.delete()
-            messages.success(request, 'پست با موفقیت حذف شد', 'success')
+            messages.success(request, 'Post deleted successfully', 'success')
         else:
-            messages.error(request, 'شما دسترسی لازم برای حذف این پست را ندارید', 'danger')
+            messages.error(request, 'You dont have permission delete this post', 'danger')
         return redirect('post:index')
 
 
@@ -103,7 +103,7 @@ class PostUpdateView(LoginRequiredMixin, View):
     def dispatch(self, request, *args, **kwargs):
         post = self.post_instance
         if not post.user.id == request.user.id:
-            messages.error(request, 'شما اجازه ندارید این پست را ویرایش کنید', 'danger')
+            messages.error(request, 'You dont have permission updated this post', 'danger')
             return redirect('post:index')
         return super().dispatch(request, *args, **kwargs)
 
@@ -119,7 +119,7 @@ class PostUpdateView(LoginRequiredMixin, View):
             new_post = form.save(commit=False)
             new_post.slug = slugify(form.cleaned_data['body'][:30])
             new_post.save()
-            messages.success(request, 'پست با موفقیت ویرایش شد', 'success')
+            messages.success(request, 'Post updated successfully', 'success')
             return redirect('post:detail', post.id, post.slug)
 
 
@@ -138,7 +138,7 @@ class PostCreateView(LoginRequiredMixin, View):
             new_post.slug = slugify(form.cleaned_data['body'][:30])
             new_post.user = request.user
             new_post.save()
-            messages.success(request, 'پست با موفقیت ثبت شد', 'success')
+            messages.success(request, 'post submited successfully', 'success')
             return redirect('post:detail', new_post.id, new_post.slug)
 
 
@@ -157,7 +157,7 @@ class PostAddReplyView(LoginRequiredMixin, View):
             reply.reply = comment
             reply.is_reply = True
             reply.save()
-            messages.success(request, 'پاسخ با موفقیت ثبت شد', 'success')
+            messages.success(request, 'reply submited successfully', 'success')
         return redirect('post:detail', post.id, post.slug)
 
 
@@ -166,8 +166,8 @@ class PostLikeView(LoginRequiredMixin, View):
         post = get_object_or_404(Post, id=post_id)
         like = Vote.objects.filter(post=post, user=request.user)
         if like.exists():
-            messages.error(request, 'شما قبلا این پست را لایک کرده اید', 'danger')
+            messages.error(request, 'You already liked this post', 'danger')
         else:
             Vote.objects.create(post=post, user=request.user)
-            messages.success(request, 'پست لایک شد', 'success')
+            messages.success(request, 'Liked', 'success')
         return redirect('post:detail', post.id, post.slug)
