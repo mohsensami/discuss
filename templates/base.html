@@ -38,13 +38,26 @@
 
 
 
-        <!------------------------Light BOx OPtions------------->
-
-
-
-
-
-
+        <!------------------------Light BOX Login------------->
+            <div id="myModal" class="modal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Please Login</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <span class="text-center text text-danger">You dont <a href="{% url 'account:login' %}">login</a> to site please login and try again <i class="fa fa-exclamation-triangle ml-2" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{% url 'account:login' %}" type="button" class="btn btn-sm btn-info">Login</a>
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">maybe later</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
 
@@ -56,7 +69,13 @@
                 $(document).ready(function(){
                   $('[data-toggle="popover"]').popover();   
                 });
-                </script>
+
+    $(window).on('load', function() {
+        setTimeout(()=> {
+                $('#myModal').modal('show');
+        }, 5000)
+    });
+        </script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 </body>
 
