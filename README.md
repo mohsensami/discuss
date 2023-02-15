@@ -1,6 +1,6 @@
 # Django Discuss
 
--   This is a django project by which we can able
+-   This is a django project developed by mohsensami
 
 ## You have to follow following steps to run this project
 
@@ -38,15 +38,32 @@ open this link on your browser `http://127.0.0.1:8000/`
 &nbsp; 
 <br>
 <p align="center">
-  BoxOffice
+  Home
 </p>
-<img src="https://github.com/mohsensami/discuss/blob/main/screenshots/boxoffice.png?raw=true">
+<img src="https://github.com/mohsensami/discuss/blob/main/screenshots/home.png?raw=true">
 </td> 
 <td width="50%">
 <br>
 <p align="center">
-  Top250
+  Detail
 </p>
-<img src="https://github.com/mohsensami/discuss/blob/main/screenshots/top250.png?raw=true">  
+<img src="https://github.com/mohsensami/discuss/blob/main/screenshots/detail.png?raw=true">  
 </td>
+</tr>
+<tr>
+<td width="50%">
+<br>
+<p align="center">
+  Profile
+</p>
+<img src="https://github.com/mohsensami/discuss/blob/main/screenshots/profile.png?raw=true">  
+</td>
+<td width="50%">
+<br>
+<p align="center">
+  Edit Profile
+</p>
+<img src="https://github.com/mohsensami/discuss/blob/main/screenshots/edit-profile.png?raw=true">  
+</td>
+</tr>
 </table>
