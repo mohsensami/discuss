@@ -1,52 +1,29 @@
 {% load static %}
 <!DOCTYPE html>
-<html dir="ltr" lang="fa">
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-<head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>Discuss</title>
+    </head>
 
-        <!------------------LIght BOx for Gallery-------------->
-        <!-- <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}"> -->
-        <!-- <script type="text/javascript" src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script> -->
-        <!------------------LIght BOx for Gallery-------------->
-        <title>Social media </title>
-</head>
-
-<body>
-
-
-        <!-------------------------------NAvigation Starts------------------>
-
-        {% include 'inc/header.html' %}
-
-        <!---------------------------------------------Ends navigation------------------------------>
-
-
-
-
-
-        {% include 'inc/messages.html' %}
-<div style="min-height: 750px">
-        {% block content %}{% endblock %}
-</div>
-        {% include 'inc/footer.html' %}
-
-
-
-        <!------------------------Light BOX Login------------->
-            <div id="myModal" class="modal" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
+    <body>
+        {% include 'inc/header.html' %} {% include 'inc/messages.html' %}
+        <div style="min-height: 750px">{% block content %}{% endblock %}</div>
+        {% include 'inc/footer.html' %} {% if not request.user.is_authenticated %}
+        <div id="myModal" class="modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title">Please Login</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                        <h5 class="modal-title">Please Login</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <span class="text-center text text-danger">You dont <a href="{% url 'account:login' %}">login</a> to site please login and try again <i class="fa fa-exclamation-triangle ml-2" aria-hidden="true"></i></span>
@@ -55,28 +32,25 @@
                         <a href="{% url 'account:login' %}" type="button" class="btn btn-sm btn-info">Login</a>
                         <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">maybe later</button>
                     </div>
-                  </div>
                 </div>
-              </div>
-
-
-
+            </div>
+        </div>
+        {% endif %}
 
         <script src="{% static 'js/jquery.slim.min.js' %}"></script>
         <script src="{% static 'js/popper.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
         <script>
-                $(document).ready(function(){
-                  $('[data-toggle="popover"]').popover();   
-                });
+            $(document).ready(function () {
+                $('[data-toggle="popover"]').popover();
+            });
 
-    $(window).on('load', function() {
-        setTimeout(()=> {
-                $('#myModal').modal('show');
-        }, 5000)
-    });
+            $(window).on("load", function () {
+                setTimeout(() => {
+                    $("#myModal").modal("show");
+                }, 5000);
+            });
         </script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-</body>
-
+    </body>
 </html>

@@ -1,12 +1,11 @@
-{% if not request.user.is_authenticated %} 
+{% if not request.user.is_authenticated %}
 <div class="card p-4">
     <span class="text-center text text-danger">You dont login to site please login and try again <i class="fa fa-exclamation-triangle ml-2" aria-hidden="true"></i></span>
 </div>
-{% endif %}
-{% if messages %}
-    <div class="">
-        {% for msg in messages %}
-            <div class="m-0 text-center alert alert-{{ msg.tags }}">{{ msg }}</div>
-        {% endfor %}
-    </div>
+{% endif %} {% if messages %}
+<div class="">
+    {% for msg in messages %}
+    <div class="m-0 text-center alert alert-{{ msg.tags }}">{{ msg }}</div>
+    {% endfor %}
+</div>
 {% endif %}

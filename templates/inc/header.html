@@ -4,13 +4,13 @@
 
   <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive"><span class="navbar-toggler-icon"></span></button>
 
-  <a href="{% url 'post:index' %}"" class="navbar-brand"><img src="{% static 'img/brand-white.png' %}" alt="logo" class="img-fluid" width="80px" height="100px"></a>
-
-  <div class="collapse navbar-collapse" id="responsive">
+  
+  <div class="collapse navbar-collapse container" id="responsive">
+    <a href="{% url 'post:index' %}"" class="navbar-brand"><img src="{% static 'img/brand-white.png' %}" alt="logo" class="img-fluid" width="80px" height="100px"></a>
 
     
     
-    <ul class="navbar-nav mr-auto p-0">
+    <ul class="navbar-nav mr-auto p-0 ">
       <li class="nav-item"><a href="{% url 'post:index' %}" class="nav-link active">Home </a></li>
       
       
@@ -31,13 +31,14 @@
     </form>
     
     
+    {% comment %} {% if not request.user.is_authenticated %}
     <a class="text-decoration-none position-relative" style="color:#CBE4F2;font-size:22px;" 
     type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" 
     
     data-content="<div>You dont login to site please login and try again</div>"
     
     ><i class="far fa-bell ml-3 d-none d-md-block"></i><small style="top: -9px;left: 8px;font-size: 12px;" class="badge badge-danger position-absolute rounded-circle">1</small></a> 
-
+    {% endif %} {% endcomment %}
 
     {% if request.user.is_authenticated %}<img src="{{ user.profile.avatar.url }}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">{% endif %}
 

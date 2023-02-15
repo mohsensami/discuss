@@ -11,7 +11,7 @@
     <div class="card-body">
     
     <div class="media">
-    <img src="{{request.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="rounded-circle ml-3">
+    <img src="{{request.user.profile.avatar.url}}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
     
     <div class="media-body">
     <h2></h2>
@@ -19,7 +19,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form }}
-        <button class="btn btn-outline-success card-link btn-sm mt-2">ارسال</button>
+        <button class="btn btn-outline-success card-link btn-sm mt-2">Send</button>
     </form>
     </p>
     
